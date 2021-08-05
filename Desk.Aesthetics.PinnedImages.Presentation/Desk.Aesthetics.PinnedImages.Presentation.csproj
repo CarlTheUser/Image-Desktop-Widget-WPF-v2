@@ -55,6 +55,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BindObservable.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\ImageDirectoryPathToBitmapConverter.cs" />
+    <Compile Include="Converters\ShadowToDropShadowEffectConverter.cs" />
+    <Compile Include="IApplicationViewComponent.cs" />
+    <Compile Include="Models\Caption.cs" />
+    <Compile Include="Models\Dimension.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\PinnedImage.cs" />
+    <Compile Include="Models\Shadow.cs" />
+    <Compile Include="Pages\ApplicationPage.cs" />
+    <Compile Include="PinnedImageWindow.xaml.cs">
+      <DependentUpon>PinnedImageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\PinnedImageViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,10 +80,23 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Application\IPinnedImageDisplayHost.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="PinnedImageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StylesDictionaries\Images.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StylesDictionaries\Types.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -90,9 +120,22 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Fonts\segoepr.ttf" />
+    <Resource Include="Resources\Fonts\segoesc.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\close-16.png" />
+    <Resource Include="Resources\Icons\home-16.png" />
+    <Resource Include="Resources\Icons\edit-16.png" />
+    <Resource Include="Resources\Icons\settings-16.png" />
+    <Resource Include="Resources\Icons\trash-16.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Images\Kim So Hyun.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

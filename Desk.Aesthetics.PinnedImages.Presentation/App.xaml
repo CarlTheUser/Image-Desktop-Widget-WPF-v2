@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="StylesDictionaries/Images.xaml"/>
+                <ResourceDictionary Source="StylesDictionaries/Types.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

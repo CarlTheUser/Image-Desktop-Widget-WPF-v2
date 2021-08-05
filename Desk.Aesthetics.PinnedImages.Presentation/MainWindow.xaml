@@ -4,9 +4,97 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation"
+        xmlns:appproperties="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation.Properties"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <SolidColorBrush x:Key="IdleWindowBorderColor" Color="#A8A8A8"/>
+        <SolidColorBrush x:Key="ActiveWindowBorderColor" Color="{Binding Source={x:Static appproperties:Settings.Default}, Path=AccentColor}"/>
+    </Window.Resources>
+    <Window.Style>
+        <Style TargetType="Window">
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome
+                    CaptionHeight="40"
+                    GlassFrameThickness="0"
+                    CornerRadius="0"/>
+                </Setter.Value>
+            </Setter>
+            <Setter
+                Property="WindowStyle"
+                Value="None"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Window">
+                        <Border
+                            Name="Border"
+                            BorderThickness="1"
+                            Background="{TemplateBinding Background}"
+                                BorderBrush="{StaticResource ActiveWindowBorderColor}">
+                            <Grid IsHitTestVisible="True" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Name="CaptionRow" Height="40"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0"/>
+                                <Grid Panel.ZIndex="1"
+                                      Background="{TemplateBinding Background}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="42"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock 
+                                            Grid.Column="0"
+                                            VerticalAlignment="Center"
+                                            Margin="8 0 0 0"
+                                            Text="{TemplateBinding Property=Title}"
+                                            FontSize="13"/>
+                                    <Button 
+                                            Height="24"
+                                            Width="24"
+                                            WindowChrome.IsHitTestVisibleInChrome="True"
+                                            Grid.Column="1"
+                                            x:Name="CloseButton">
+
+                                        <Button.Content>
+                                            <Image
+                                                    Source="{StaticResource CloseIcon16x16}" 
+                                                    Stretch="Uniform"/>
+                                        </Button.Content>
+                                    </Button>
+                                </Grid>
+
+                                <Grid
+                                    Grid.Row="1" 
+                                    Background="{TemplateBinding Background}">
+                                    <ContentPresenter/>
+                                </Grid>
+
+
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsActive" Value="false">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource IdleWindowBorderColor}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Style>
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="230"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         
+        <StackPanel Grid.Column="1">
+            <Button Click="Button_Click">
+                click
+            </Button>
+        </StackPanel>
+
     </Grid>
 </Window>

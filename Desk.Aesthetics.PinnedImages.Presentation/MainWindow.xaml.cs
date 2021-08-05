@@ -24,5 +24,10 @@ namespace Desk.Aesthetics.PinnedImages.Presentation
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new PinnedImageWindow().Show();
+        }
     }
 }
