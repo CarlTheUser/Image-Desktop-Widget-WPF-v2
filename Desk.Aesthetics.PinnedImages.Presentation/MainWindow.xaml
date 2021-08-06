@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation"
         xmlns:appproperties="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation.Properties"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Image Desktop Widget" 
+        Height="450" 
+        Width="800"
+        Background="#fafafa">
     <Window.Resources>
         <SolidColorBrush x:Key="IdleWindowBorderColor" Color="#A8A8A8"/>
         <SolidColorBrush x:Key="ActiveWindowBorderColor" Color="{Binding Source={x:Static appproperties:Settings.Default}, Path=AccentColor}"/>
@@ -31,14 +34,47 @@
                             Name="Border"
                             BorderThickness="1"
                             Background="{TemplateBinding Background}"
-                                BorderBrush="{StaticResource ActiveWindowBorderColor}">
+                                BorderBrush="{StaticResource IdleWindowBorderColor}">
                             <Grid IsHitTestVisible="True" >
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Name="CaptionRow" Height="40"/>
+                                    <RowDefinition Name="CaptionRow" Height="112"/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <Grid Grid.Row="0"/>
-                                <Grid Panel.ZIndex="1"
+                                <!--<Grid Grid.Row="0"/>-->
+
+                                <Border Grid.Row="0"
+                    BorderBrush="#E8E8E8"
+                    BorderThickness="0 0 0 1">
+
+                                    <Grid>
+                                        <StackPanel HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                FlowDirection="RightToLeft"
+                                Orientation="Horizontal">
+                                            <Button WindowChrome.IsHitTestVisibleInChrome="True"
+                                                    Style="{StaticResource TransparentButton}"
+                                                    Padding="16 8">
+                                                <Button.Content>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Path Width="12"
+                                          Height="12"
+                                          Fill="#1A1A1A"
+                                        Stretch="UniformToFill"
+                                        Data="{StaticResource Close1}"/>
+                                                    </StackPanel>
+
+                                                </Button.Content>
+                                            </Button>
+                                        </StackPanel>
+                                        <TextBlock 
+                    Margin="36 20"
+                    FontSize="24pt"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                                            Text="{TemplateBinding Property=Title}"/>
+                                    </Grid>
+                                </Border>
+                                <!--<Grid Panel.ZIndex="1"
                                       Background="{TemplateBinding Background}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition/>
@@ -63,7 +99,7 @@
                                                     Stretch="Uniform"/>
                                         </Button.Content>
                                     </Button>
-                                </Grid>
+                                </Grid>-->
 
                                 <Grid
                                     Grid.Row="1" 
@@ -74,27 +110,36 @@
 
                             </Grid>
                         </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsActive" Value="false">
-                                <Setter TargetName="Border" Property="BorderBrush" Value="{StaticResource IdleWindowBorderColor}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
     </Window.Style>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="230"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        
-        <StackPanel Grid.Column="1">
-            <Button Click="Button_Click">
-                click
-            </Button>
-        </StackPanel>
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="112"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-    </Grid>
+           
+            
+            
+
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="230"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+                    
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+    </Border>
 </Window>
