@@ -4,19 +4,25 @@ using System;
 
 namespace Desk.Aesthetics.PinnedImages.Core.Service
 {
-    public interface IResizeImageService
+    public interface IUpdatePinnedImageHostDisplayParameters
     {
-        void Resize(ResizedImageData resizedImageData);
+        void UpdateDisplayParameters(PinnedImageHostDisplayParametersData parametersData);
     }
 
-    public class ResizeImageService : IResizeImageService
+    public class UpdatePinnedImageHostDisplayParameters : IUpdatePinnedImageHostDisplayParameters
     {
         private readonly IQuery<PinnedImageData, Guid> _pinnedImageDataByIdQuery;
         private readonly IDataWriter<PinnedImageData> _pinnedImageDataWriter;
 
-        public void Resize(ResizedImageData resizedImageData)
+        public UpdatePinnedImageHostDisplayParameters(IQuery<PinnedImageData, Guid> pinnedImageDataByIdQuery, IDataWriter<PinnedImageData> pinnedImageDataWriter)
         {
-            PinnedImageData existing = _pinnedImageDataByIdQuery.Execute(resizedImageData.Image);
+            _pinnedImageDataByIdQuery = pinnedImageDataByIdQuery;
+            _pinnedImageDataWriter = pinnedImageDataWriter;
+        }
+
+        public void UpdateDisplayParameters(PinnedImageHostDisplayParametersData parametersData)
+        {
+            PinnedImageData existing = _pinnedImageDataByIdQuery.Execute(parametersData.Image);
 
             PinnedImagesCore.Require(() => existing != null, "Image not found.");
 
@@ -36,7 +42,8 @@ namespace Desk.Aesthetics.PinnedImages.Core.Service
                     existing.ShadowBlurRadius,
                     existing.IsShadowHidden));
 
-            pinnedImage.Dimensions = new Dimensions(resizedImageData.Width, resizedImageData.Height);
+            pinnedImage.Location = new Location(parametersData.LocationX, parametersData.LocationY);
+            pinnedImage.Dimensions = new Dimensions(parametersData.Width, parametersData.Height);
 
             _pinnedImageDataWriter.Write(
                 new PinnedImageData(
