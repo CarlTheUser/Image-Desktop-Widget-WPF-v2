@@ -41,7 +41,6 @@
                                         Color="#000000"/>
                                 </Setter.Value>
                             </Setter>
-
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

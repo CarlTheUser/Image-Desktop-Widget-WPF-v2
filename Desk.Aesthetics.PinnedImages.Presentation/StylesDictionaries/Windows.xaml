@@ -14,6 +14,8 @@
     
     <Style x:Key="MainWindow" 
            TargetType="Window">
+        <Setter Property="FontSize" Value="12pt"/>
+        <Setter Property="Foreground" Value="#1F1F1F"/>
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
                 <WindowChrome
@@ -29,49 +31,45 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Window">
                     <Border
-                            Name="Border"
-                            BorderThickness="1"
-                            Background="{TemplateBinding Background}"
-                                BorderBrush="{StaticResource IdleWindowBorderColor}">
+                        Name="Border"
+                        BorderThickness="1"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{StaticResource IdleWindowBorderColor}">
                         <Grid IsHitTestVisible="True" >
                             <Grid.RowDefinitions>
                                 <RowDefinition Name="CaptionRow" Height="112"/>
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <!--<Grid Grid.Row="0"/>-->
-
                             <Border Grid.Row="0"
-                    BorderBrush="#E8E8E8"
-                    BorderThickness="0 0 0 1">
-
+                                    BorderBrush="#E8E8E8"
+                                    BorderThickness="0 0 0 1">
                                 <Grid>
                                     <StackPanel HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                FlowDirection="RightToLeft"
-                                Orientation="Horizontal">
+                                                VerticalAlignment="Top"
+                                                FlowDirection="RightToLeft"
+                                                Orientation="Horizontal">
                                         <Button WindowChrome.IsHitTestVisibleInChrome="True"
-                                                    Style="{StaticResource TransparentButton}"
-                                                    Padding="16 8"
+                                                Style="{StaticResource TransparentButton}"
+                                                Padding="16 8"
                                                 Command="{StaticResource CloseWindowCommand}"
                                                 CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
                                             <Button.Content>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Path Width="12"
-                                          Height="12"
-                                          Fill="#1A1A1A"
-                                        Stretch="UniformToFill"
-                                        Data="{StaticResource Close1}"/>
-                                                </StackPanel>
-
+                                                <Path Width="12"
+                                                          Height="12"
+                                                          Fill="#1A1A1A"
+                                                          Stretch="UniformToFill"
+                                                          Data="{StaticResource Close1}"/>
                                             </Button.Content>
                                         </Button>
                                     </StackPanel>
                                     <TextBlock 
-                    Margin="36 20"
-                    FontSize="24pt"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                                            Text="{TemplateBinding Property=Title}"/>
+                                        Foreground="{TemplateBinding Foreground}"
+                                        Margin="36 20"
+                                        FontSize="24pt"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Text="{TemplateBinding Property=Title}"/>
                                 </Grid>
                             </Border>
                             <!--<Grid Panel.ZIndex="1"
@@ -101,9 +99,8 @@
                                     </Button>
                                 </Grid>-->
 
-                            <Grid
-                                    Grid.Row="1" 
-                                    Background="{TemplateBinding Background}">
+                            <Grid Grid.Row="1" 
+                                  Background="{TemplateBinding Background}">
                                 <ContentPresenter/>
                             </Grid>
 
