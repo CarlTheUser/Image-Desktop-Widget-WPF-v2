@@ -6,10 +6,12 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="StylesDictionaries/Colors.xaml"/>
                 <ResourceDictionary Source="StylesDictionaries/Images.xaml"/>
                 <ResourceDictionary Source="StylesDictionaries/Types.xaml"/>
                 <ResourceDictionary Source="StylesDictionaries/Drawables.xaml"/>
                 <ResourceDictionary Source="StylesDictionaries/Buttons.xaml"/>
+                <ResourceDictionary Source="StylesDictionaries/CheckBoxes.xaml"/>
                 <ResourceDictionary Source="StylesDictionaries/Windows.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

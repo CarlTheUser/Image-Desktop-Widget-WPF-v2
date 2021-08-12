@@ -1,0 +1,127 @@
+﻿<Page x:Class="Desk.Aesthetics.PinnedImages.Presentation.Pages.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation.Pages"
+      xmlns:viewmodels="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Settings"
+      Name="SettingsPageInstance"
+      d:Background="White"
+      Loaded="SettingsPageInstance_Loaded">
+    <Page.DataContext>
+        <viewmodels:SettingsPageViewModel x:Name="VM"/>
+    </Page.DataContext>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Settings" 
+                       FontSize="18pt"
+                       Margin="12 12"/>
+
+            <TextBlock Text="Run when Windows starts" 
+                       FontSize="12pt"
+                       Margin="12 12"/>
+
+            <CheckBox HorizontalAlignment="Left"
+                      Margin="12"
+                      Style="{StaticResource ToggleCheckBox}"/>
+
+            <TextBlock Text="Accent Color" 
+                       FontSize="12pt"
+                       Margin="12 12"/>
+            <ListView ItemsSource="{Binding ElementName=VM, Path=Colors}"
+                      Margin="12 0 0 12"
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                      BorderThickness="0"
+                      HorizontalAlignment="Left"
+                      MaxWidth="300">
+                <ListView.Resources>
+                    <Style TargetType="Button" 
+                           x:Key="ColorButton">
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Margin" Value="3"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="ColorBorder" 
+                                            BorderBrush="{TemplateBinding Background}"
+                                            BorderThickness="2"
+                                            Margin="0"
+                                            Background="{TemplateBinding Background}">
+                                        <ContentPresenter Margin="{TemplateBinding Margin}"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="ColorBorder" Property="BorderBrush">
+                                                <Setter.Value>
+                                                    <SolidColorBrush Color="#2a2a2a"/>
+                                                    <!--<DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+                                                        <DrawingBrush.Drawing>
+                                                            <DrawingGroup>
+                                                                <GeometryDrawing Brush="#2a2a2a">
+                                                                    <GeometryDrawing.Geometry>
+                                                                        <GeometryGroup>
+                                                                            <RectangleGeometry Rect="0,0,50,50" />
+                                                                            <RectangleGeometry Rect="50,50,50,50" />
+                                                                        </GeometryGroup>
+                                                                    </GeometryDrawing.Geometry>
+                                                                </GeometryDrawing>
+                                                            </DrawingGroup>
+                                                        </DrawingBrush.Drawing>
+                                                    </DrawingBrush>-->
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.Resources>
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"></WrapPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Button x:Name="ColorButtonElement" Width="40"
+                                Height="40"
+                                DataContext="{Binding}"
+                                Style="{StaticResource ColorButton}"
+                                Command="{Binding ElementName=VM, Path=SetAccentColorCommand}"
+                                CommandParameter="{Binding}">
+                            <!--https://www.reddit.com/r/csharp/comments/np6iao/cannot_find_governing_frameworkelement_or/-->
+                            <FrameworkElement x:Name="ColorProxyElement" DataContext="{Binding}"/>
+                            <Button.Background>
+                                <SolidColorBrush Color="{Binding DataContext, Source={x:Reference ColorProxyElement}}"/>
+                            </Button.Background>
+                            
+                        </Button>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                    <Border BorderBrush="Transparent"
+                                            BorderThickness="1"
+                                            Background="{TemplateBinding Background}">
+                                        <ContentPresenter />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+            </ListView>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

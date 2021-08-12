@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Desk.Aesthetics.PinnedImages.Presentation.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,16 @@ namespace Desk.Aesthetics.PinnedImages.Presentation
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, IApplicationViewComponent<MainWindowViewModel>
     {
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        public MainWindowViewModel GetViewModel()
+        {
+            return VM;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
