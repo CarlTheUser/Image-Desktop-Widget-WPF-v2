@@ -1,5 +1,4 @@
-﻿using Data.Common;
-using Data.Common.Contracts;
+﻿using Data.Common.Contracts;
 using Desk.Aesthetics.PinnedImages.Core.Data;
 using System;
 using System.Collections.Generic;
@@ -65,7 +64,8 @@ namespace Desk.Aesthetics.PinnedImages.Core.Service
                     newPinnedImageData.ShadowDirection,
                     newPinnedImageData.ShadowBlurRadius, false));
 
-                pinnedImageBitmap.Save(Path.Combine(dumpDir, "original" + extension));
+                //pinnedImageBitmap.Save(Path.Combine(dumpDir, "original" + extension));
+                pinnedImageBitmap.Save(Path.Combine(dumpDir, "original"));
 
                 const int maxThumbnailWidth = 1280;
                 const int maxThumbnailHeight = 720;
@@ -99,7 +99,8 @@ namespace Desk.Aesthetics.PinnedImages.Core.Service
                 graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 graphics.DrawImage(pinnedImageBitmap, 0, 0, (int)thumbnailWidth, (int)thumbnailHeight);
 
-                thumbnail.Save(Path.Combine(Path.Combine(dumpDir, "thumb" + extension)));
+                //thumbnail.Save(Path.Combine(Path.Combine(dumpDir, "thumb" + extension)));
+                thumbnail.Save(Path.Combine(Path.Combine(dumpDir, "thumb")));
 
                 PinnedImageData pinnedImageData = new PinnedImageData(
                 pinnedImage.Id,

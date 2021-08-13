@@ -1,6 +1,7 @@
 ﻿using Data.Common.Contracts;
 using Desk.Aesthetics.PinnedImages.Presentation.Application;
 using Desk.Aesthetics.PinnedImages.Presentation.Commands;
+using Microsoft.Win32;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
@@ -13,6 +14,10 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
 {
     public class SettingsPageViewModel : ViewModelBase
     {
+        private const string APP_KEY = "Pinned Images";
+
+        private const string PATH_REGISTRY_RUN = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
+
         private ObservableCollection<Color> _colors = new ObservableCollection<Color>();
 
         public ObservableCollection<Color> Colors
@@ -61,7 +66,17 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
 
         private void SetStartupBehavior(bool startWithWindows)
         {
-
+            using (RegistryKey key = Registry.CurrentUser.OpenSubKey(PATH_REGISTRY_RUN, true))
+            {
+                if (startWithWindows)
+                {
+                    key.SetValue(APP_KEY, "\"" + System.Reflection.Assembly.GetExecutingAssembly().Location + "\"");
+                }
+                else
+                {
+                    key.DeleteValue(APP_KEY, false);
+                }
+            }
         }
 
         private void SetColor(Color value)
@@ -79,7 +94,10 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
             WindowsPrincipal principal = new WindowsPrincipal(identity);
             HasAdministratorRights = principal.IsInRole(WindowsBuiltInRole.Administrator);
 
-
+            using(RegistryKey key = Registry.CurrentUser.OpenSubKey(PATH_REGISTRY_RUN, true))
+            {
+                StartWithWindows = key.GetValue(APP_KEY) != null;
+            }
         }
 
         public void LoadColors()

@@ -60,6 +60,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Application\ColorsFromFileQuery.cs" />
+    <Compile Include="Application\IPinnedImagesAppService.cs" />
     <Compile Include="BindObservable.cs" />
     <Compile Include="Commands\CloseWindowCommand.cs" />
     <Compile Include="Commands\MaximizeRestoreWindowCommand.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Models\Dimension.cs" />
     <Compile Include="Models\Location.cs" />
     <Compile Include="Models\PinnedImage.cs" />
+    <Compile Include="Models\PinnedImageListItem.cs" />
     <Compile Include="Models\Shadow.cs" />
     <Compile Include="Pages\ApplicationPage.cs" />
     <Compile Include="Pages\PinnedImagesPage.xaml.cs">
@@ -190,6 +192,14 @@
     <ProjectReference Include="..\Data-Common-Contracts-Net-Framework\Data.Common.Contracts\Data.Common.Contracts.csproj">
       <Project>{41B56204-60F1-4B01-A675-B1745B0EF1B2}</Project>
       <Name>Data.Common.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Desk.Aesthetics.PinnedImages.Core\Desk.Aesthetics.PinnedImages.Core.csproj">
+      <Project>{BB0C05F3-9953-4FF0-AC4F-0C8F36E2EE00}</Project>
+      <Name>Desk.Aesthetics.PinnedImages.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Desk.Aesthetics.PinnedImages.Data.Display\Desk.Aesthetics.PinnedImages.Data.Display.csproj">
+      <Project>{04A4C1B7-E8D1-4DD3-BAC4-60CCD2136551}</Project>
+      <Name>Desk.Aesthetics.PinnedImages.Data.Display</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Common.Contracts", "Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desk.Aesthetics.PinnedImages.Core", "Desk.Aesthetics.PinnedImages.Core\Desk.Aesthetics.PinnedImages.Core.csproj", "{BB0C05F3-9953-4FF0-AC4F-0C8F36E2EE00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desk.Aesthetics.PinnedImages.Data.Display", "Desk.Aesthetics.PinnedImages.Data.Display\Desk.Aesthetics.PinnedImages.Data.Display.csproj", "{04A4C1B7-E8D1-4DD3-BAC4-60CCD2136551}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{BB0C05F3-9953-4FF0-AC4F-0C8F36E2EE00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB0C05F3-9953-4FF0-AC4F-0C8F36E2EE00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB0C05F3-9953-4FF0-AC4F-0C8F36E2EE00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04A4C1B7-E8D1-4DD3-BAC4-60CCD2136551}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04A4C1B7-E8D1-4DD3-BAC4-60CCD2136551}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04A4C1B7-E8D1-4DD3-BAC4-60CCD2136551}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04A4C1B7-E8D1-4DD3-BAC4-60CCD2136551}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
