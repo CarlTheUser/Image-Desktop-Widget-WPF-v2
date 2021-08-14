@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation.Pages"
       xmlns:viewmodels="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation.ViewModels"
+      xmlns:commands="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation.Commands"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Settings"
@@ -14,7 +15,6 @@
     <Page.DataContext>
         <viewmodels:SettingsPageViewModel x:Name="VM"/>
     </Page.DataContext>
-
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Orientation="Vertical">
             <TextBlock Text="Settings" 
@@ -25,9 +25,12 @@
                        FontSize="12pt"
                        Margin="12 12"/>
 
-            <CheckBox HorizontalAlignment="Left"
+            <CheckBox x:Name="StartupBehaviorToggle"
+                    HorizontalAlignment="Left"
                       Margin="12"
-                      Style="{StaticResource ToggleCheckBox}"/>
+                      Style="{StaticResource ToggleCheckBox}"
+                      Command="{Binding ElementName=VM, Path=SetStartupBehaviorCommand}"
+                      CommandParameter="{Binding ElementName= StartupBehaviorToggle, Path=IsChecked}"/>
 
             <TextBlock Text="Accent Color" 
                        FontSize="12pt"

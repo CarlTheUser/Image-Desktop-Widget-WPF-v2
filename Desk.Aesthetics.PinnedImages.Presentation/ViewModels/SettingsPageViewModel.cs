@@ -60,8 +60,15 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
 
         public SettingsPageViewModel()
         {
-            SetStartupBehaviorCommand = new ParameterizedRelayCommand<bool>(SetStartupBehavior);
-            SetAccentColorCommand = new ParameterizedRelayCommand<Color>(SetColor);
+            SetStartupBehaviorCommand = new AsyncParameterizedRelayCommand<bool>(
+                SetStartupBehavior,
+                null,
+                (e) => { }) ;
+
+            SetAccentColorCommand = new AsyncParameterizedRelayCommand<Color>(
+                SetColor,
+                null,
+                (e) => { });
         }
 
         private void SetStartupBehavior(bool startWithWindows)

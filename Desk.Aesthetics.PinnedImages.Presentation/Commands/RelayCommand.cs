@@ -27,7 +27,7 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.Commands
 
         public bool CanExecute(object parameter)
         {
-            return IsExecutable == null ? true : IsExecutable.Invoke();
+            return IsExecutable == null || IsExecutable.Invoke();
         }
 
         public void Execute(object parameter)
