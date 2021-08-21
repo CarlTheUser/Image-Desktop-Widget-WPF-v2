@@ -1,3 +1,6 @@
 [submodule "Data-Common-Contracts-Net-Framework"]
 	path = Data-Common-Contracts-Net-Framework
 	url = https://github.com/CarlTheUser/Data-Common-Contracts-Net-Framework
+[submodule "Sql-Data-Access-Tool-Wrapper-Net-Framework"]
+	path = Sql-Data-Access-Tool-Wrapper-Net-Framework
+	url = https://github.com/CarlTheUser/Sql-Data-Access-Tool-Wrapper-Net-Framework
