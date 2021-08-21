@@ -14,5 +14,19 @@ namespace Desk.Aesthetics.PinnedImages.Core.Data
         public double ShadowDirection { get; }
         public double ShadowBlurRadius { get; }
         public bool IsShadowHidden { get; }
+
+        public ImageAppearanceData(Guid image, double frameThickness, double rotationAngle, string caption, bool showCaption, double shadowOpacity, double shadowDepth, double shadowDirection, double shadowBlurRadius, bool isShadowHidden)
+        {
+            Image = image;
+            FrameThickness = frameThickness;
+            RotationAngle = rotationAngle;
+            Caption = caption;
+            ShowCaption = showCaption;
+            ShadowOpacity = shadowOpacity;
+            ShadowDepth = shadowDepth;
+            ShadowDirection = shadowDirection;
+            ShadowBlurRadius = shadowBlurRadius;
+            IsShadowHidden = isShadowHidden;
+        }
     }
 }

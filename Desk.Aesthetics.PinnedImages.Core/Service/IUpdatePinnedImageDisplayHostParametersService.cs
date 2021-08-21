@@ -4,12 +4,12 @@ using System;
 
 namespace Desk.Aesthetics.PinnedImages.Core.Service
 {
-    public interface IUpdatePinnedImageHostDisplayParameters
+    public interface IUpdatePinnedImageDisplayHostParametersService
     {
         void UpdateDisplayParameters(PinnedImageHostDisplayParametersData parametersData);
     }
 
-    public class UpdatePinnedImageHostDisplayParameters : IUpdatePinnedImageHostDisplayParameters
+    public class UpdatePinnedImageHostDisplayParameters : IUpdatePinnedImageDisplayHostParametersService
     {
         private readonly IQuery<PinnedImageData, Guid> _pinnedImageDataByIdQuery;
         private readonly IDataWriter<PinnedImageData> _pinnedImageDataWriter;

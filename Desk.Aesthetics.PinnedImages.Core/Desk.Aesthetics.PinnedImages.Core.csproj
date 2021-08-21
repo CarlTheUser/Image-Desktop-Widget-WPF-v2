@@ -56,9 +56,10 @@
     <Compile Include="PinnedImagesException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\IChangeAppearanceService.cs" />
+    <Compile Include="Service\IDeletePinnedImageService.cs" />
     <Compile Include="Service\IPinNewImageService.cs" />
     <Compile Include="Service\ISetDeskDisplayService.cs" />
-    <Compile Include="Service\IUpdatePinnedImageHostDisplayParameters.cs" />
+    <Compile Include="Service\IUpdatePinnedImageDisplayHostParametersService.cs" />
     <Compile Include="Shadow.cs" />
   </ItemGroup>
   <ItemGroup>
