@@ -13,6 +13,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desk.Aesthetics.PinnedImage
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desk.Aesthetics.PinnedImages.Data.Display", "Desk.Aesthetics.PinnedImages.Data.Display\Desk.Aesthetics.PinnedImages.Data.Display.csproj", "{04A4C1B7-E8D1-4DD3-BAC4-60CCD2136551}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Sql", "Sql-Data-Access-Tool-Wrapper-Net-Framework\Data.Sql\Data.Sql.csproj", "{6A82A608-863D-4D84-B05C-10681850AB4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desk.Aesthetics.PinnedImages.Infrastructure.Data", "Desk.Aesthetics.PinnedImages.Infrastructure.Data\Desk.Aesthetics.PinnedImages.Infrastructure.Data.csproj", "{7A0E7111-10FC-4787-AF04-AEFCD5A054BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desk.Aesthetics.PinnedImages.Utilities.Misc", "Desk.Aesthetics.PinnedImages.Utilities.Misc\Desk.Aesthetics.PinnedImages.Utilities.Misc.csproj", "{FA279A18-C6C0-4B99-98D4-8A785F5D5327}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,12 +41,25 @@ Global
 		{04A4C1B7-E8D1-4DD3-BAC4-60CCD2136551}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04A4C1B7-E8D1-4DD3-BAC4-60CCD2136551}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04A4C1B7-E8D1-4DD3-BAC4-60CCD2136551}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A82A608-863D-4D84-B05C-10681850AB4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A82A608-863D-4D84-B05C-10681850AB4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A82A608-863D-4D84-B05C-10681850AB4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A82A608-863D-4D84-B05C-10681850AB4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A0E7111-10FC-4787-AF04-AEFCD5A054BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A0E7111-10FC-4787-AF04-AEFCD5A054BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A0E7111-10FC-4787-AF04-AEFCD5A054BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A0E7111-10FC-4787-AF04-AEFCD5A054BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA279A18-C6C0-4B99-98D4-8A785F5D5327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA279A18-C6C0-4B99-98D4-8A785F5D5327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA279A18-C6C0-4B99-98D4-8A785F5D5327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA279A18-C6C0-4B99-98D4-8A785F5D5327}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{41B56204-60F1-4B01-A675-B1745B0EF1B2} = {0CDBC880-5885-4EA0-8ADC-0965B9D8DDD1}
+		{6A82A608-863D-4D84-B05C-10681850AB4C} = {0CDBC880-5885-4EA0-8ADC-0965B9D8DDD1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FB511E08-FC0E-4A08-9084-D1061C716266}

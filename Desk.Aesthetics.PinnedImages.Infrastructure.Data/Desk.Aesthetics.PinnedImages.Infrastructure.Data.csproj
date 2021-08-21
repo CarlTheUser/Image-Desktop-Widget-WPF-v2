@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A0E7111-10FC-4787-AF04-AEFCD5A054BD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Desk.Aesthetics.PinnedImages.Infrastructure.Data</RootNamespace>
+    <AssemblyName>Desk.Aesthetics.PinnedImages.Infrastructure.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\FlattenedPinnedImagesRow.cs" />
+    <Compile Include="Core\FlattenedPinnedImagesRowDao.cs" />
+    <Compile Include="Core\FlattenedPinnedImagesRowIdFilter.cs" />
+    <Compile Include="Core\PinnedImageDataByIdQuery.cs" />
+    <Compile Include="Core\PinnedImageDataDestoryer.cs" />
+    <Compile Include="Core\PinnedImageDataWriter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Data-Common-Contracts-Net-Framework\Data.Common.Contracts\Data.Common.Contracts.csproj">
+      <Project>{41B56204-60F1-4B01-A675-B1745B0EF1B2}</Project>
+      <Name>Data.Common.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Desk.Aesthetics.PinnedImages.Core\Desk.Aesthetics.PinnedImages.Core.csproj">
+      <Project>{BB0C05F3-9953-4FF0-AC4F-0C8F36E2EE00}</Project>
+      <Name>Desk.Aesthetics.PinnedImages.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Desk.Aesthetics.PinnedImages.Utilities.Misc\Desk.Aesthetics.PinnedImages.Utilities.Misc.csproj">
+      <Project>{FA279A18-C6C0-4B99-98D4-8A785F5D5327}</Project>
+      <Name>Desk.Aesthetics.PinnedImages.Utilities.Misc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sql-Data-Access-Tool-Wrapper-Net-Framework\Data.Sql\Data.Sql.csproj">
+      <Project>{6A82A608-863D-4D84-B05C-10681850AB4C}</Project>
+      <Name>Data.Sql</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

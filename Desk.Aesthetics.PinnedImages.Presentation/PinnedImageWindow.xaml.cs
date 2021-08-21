@@ -10,6 +10,8 @@ namespace Desk.Aesthetics.PinnedImages.Presentation
     /// </summary>
     public partial class PinnedImageWindow : Window, IApplicationViewComponent<PinnedImageViewModel>, IPinnedImageDisplayHost
     {
+        public PinnedImageViewModel VM { get; }
+
         public PinnedImageWindow(PinnedImageViewModel viewModel)
         {
             InitializeComponent();

@@ -97,9 +97,9 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <viewmodels:PinnedImageViewModel  x:Name="VM" />
-    </Window.DataContext>
+    </Window.DataContext>-->
     <Grid>
         <StackPanel
             Name="ActionButtonsContainer"
