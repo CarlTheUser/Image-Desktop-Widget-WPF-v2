@@ -39,7 +39,7 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
                     return new PinnedImageData(
                         existing.Id,
                         existing.ImageDirectory,
-                        existing.IsDisplayedToDesk,
+                        existing.IsDisplayedToDesk.FromSqliteInt(),
                         existing.FrameThickness,
                         existing.RotationAngle,
                         existing.LocationX,
@@ -47,12 +47,12 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
                         existing.Width,
                         existing.Height,
                         existing.CaptionText,
-                        existing.IsCaptionDisplayed,
+                        existing.IsCaptionDisplayed.FromSqliteInt(),
                         existing.ShadowOpacity,
                         existing.ShadowDepth,
                         existing.ShadowDirection,
                         existing.ShadowBlurRadius,
-                        existing.IsShadowHidden);
+                        existing.IsShadowHidden.FromSqliteInt());
                 }
 
                 transaction.Commit();

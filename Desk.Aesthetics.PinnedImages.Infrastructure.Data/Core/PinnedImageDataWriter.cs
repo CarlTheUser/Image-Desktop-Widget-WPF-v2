@@ -36,7 +36,7 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
                 if(existing != null)
                 {
                     existing.ImageDirectory = data.ImageDirectory;
-                    existing.IsDisplayedToDesk = data.IsDisplayedToDesk;
+                    existing.IsDisplayedToDesk = data.IsDisplayedToDesk.ToSqliteValue();
                     existing.FrameThickness = data.FrameThickness;
                     existing.RotationAngle = data.RotationAngle;
                     existing.LocationX = data.LocationX;
@@ -44,12 +44,12 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
                     existing.Width = data.Width;
                     existing.Height = data.Height;
                     existing.CaptionText = data.CaptionText;
-                    existing.IsCaptionDisplayed = data.IsCaptionDisplayed;
+                    existing.IsCaptionDisplayed = data.IsCaptionDisplayed.ToSqliteValue();
                     existing.ShadowOpacity = data.ShadowOpacity;
                     existing.ShadowDepth = data.ShadowDepth;
                     existing.ShadowDirection = data.ShadowDirection;
                     existing.ShadowBlurRadius = data.ShadowBlurRadius;
-                    existing.IsShadowHidden = data.IsShadowHidden;
+                    existing.IsShadowHidden = data.IsShadowHidden.ToSqliteValue();
 
                     _dao.UpdateItem(
                         existing,
@@ -63,7 +63,7 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
                         {
                             Id = data.Id,
                             ImageDirectory = data.ImageDirectory,
-                            IsDisplayedToDesk = data.IsDisplayedToDesk,
+                            IsDisplayedToDesk = data.IsDisplayedToDesk.ToSqliteValue(),
                             FrameThickness = data.FrameThickness,
                             RotationAngle = data.RotationAngle,
                             LocationX = data.LocationX,
@@ -71,12 +71,12 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
                             Width = data.Width,
                             Height = data.Height,
                             CaptionText = data.CaptionText,
-                            IsCaptionDisplayed = data.IsCaptionDisplayed,
+                            IsCaptionDisplayed = data.IsCaptionDisplayed.ToSqliteValue(),
                             ShadowOpacity = data.ShadowOpacity,
                             ShadowDepth = data.ShadowDepth,
                             ShadowDirection = data.ShadowDirection,
                             ShadowBlurRadius = data.ShadowBlurRadius,
-                            IsShadowHidden = data.IsShadowHidden
+                            IsShadowHidden = data.IsShadowHidden.ToSqliteValue()
                         },
                         _provider,
                         transaction);
