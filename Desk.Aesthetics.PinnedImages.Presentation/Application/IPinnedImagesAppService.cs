@@ -1,17 +1,12 @@
-﻿using Data.Common.Contracts;
-using Desk.Aesthetics.PinnedImages.Core.Data;
+﻿using Desk.Aesthetics.PinnedImages.Core.Data;
 using Desk.Aesthetics.PinnedImages.Core.Service;
-using Desk.Aesthetics.PinnedImages.Data.Display;
 using Desk.Aesthetics.PinnedImages.Presentation.Models;
 using System;
-using System.Collections.Generic;
 
 namespace Desk.Aesthetics.PinnedImages.Presentation.Application
 {
     public interface IPinnedImagesAppService
     {
-        IEnumerable<PinnedImageListItem> Query(RecordQueryOptions options);
-
         PinnedImage PinNewImageWithDefaults(string filepath);
 
         void HideFromDesk(Guid pinnedImage);
@@ -21,22 +16,46 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.Application
 
     public class PinnedImagesAppService : IPinnedImagesAppService
     {
-        //private readonly IQuery<IEnumerable<PinnedImageListItemData>, RecordQueryOptions>> _
-
-        private readonly PagedDataSource<PinnedImageListItemData> _pinnedImageListItemDataDataSource;
-
         private readonly IPinNewImageService _pinNewImageService;
 
         private readonly ISetDeskDisplayService _setDeskDisplayService;
 
-        public IEnumerable<PinnedImageListItem> Query(RecordQueryOptions options)
+        public PinnedImagesAppService(IPinNewImageService pinNewImageService, ISetDeskDisplayService setDeskDisplayService)
         {
-            throw new System.NotImplementedException();
+            _pinNewImageService = pinNewImageService;
+            _setDeskDisplayService = setDeskDisplayService;
         }
 
         public PinnedImage PinNewImageWithDefaults(string filepath)
         {
-            throw new System.NotImplementedException();
+            PinnedImageData data = _pinNewImageService.PinNewImage(
+                new NewPinnedImageData(
+                    filepath,
+                    10,
+                    0,
+                    50,
+                    50,
+                    300,
+                    225,
+                    0.4,
+                    3,
+                    270,
+                    6));
+
+            return new PinnedImage(
+                data.Id,
+                data.ImageDirectory,
+                new Dimension(data.Width, data.Height),
+                new Location(data.LocationX, data.LocationY),
+                data.FrameThickness,
+                data.RotationAngle,
+                new Caption(data.CaptionText, data.IsCaptionDisplayed),
+                new Shadow(
+                    data.ShadowOpacity,
+                    data.ShadowDepth,
+                    data.ShadowDirection,
+                    data.ShadowBlurRadius,
+                    !data.IsShadowHidden));
         }
 
         public void HideFromDesk(Guid pinnedImage)

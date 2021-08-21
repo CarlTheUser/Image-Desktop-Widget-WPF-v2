@@ -1,18 +1,6 @@
 ﻿using Desk.Aesthetics.PinnedImages.Presentation.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Desk.Aesthetics.PinnedImages.Presentation
 {
@@ -21,9 +9,32 @@ namespace Desk.Aesthetics.PinnedImages.Presentation
     /// </summary>
     public partial class MainWindow : Window, IApplicationViewComponent<MainWindowViewModel>
     {
+        private static MainWindow _instance = null;
+
+        private static readonly object _lock = new object();
+
+        public static MainWindow Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (_lock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new MainWindow();
+                        }
+                    }
+                }
+                return _instance;
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         public MainWindowViewModel GetViewModel()
@@ -33,7 +44,12 @@ namespace Desk.Aesthetics.PinnedImages.Presentation
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new PinnedImageWindow().Show();
+            //new PinnedImageWindow().Show();
+        }
+
+        private void MainWindowInstance_Closed(object sender, EventArgs e)
+        {
+            _instance = null;
         }
     }
 }

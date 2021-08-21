@@ -7,6 +7,10 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
 {
     public class PinnedImageViewModel : ViewModelBase
     {
+        private readonly IPinnedImageAppService _pinnedImageAppService;
+
+        private readonly IViewLauncher _mainWindowLauncher;
+
         private PinnedImage _pinnedImage;
 
         public IPinnedImageDisplayHost PinnedImageDisplayHost { get; set; }
@@ -21,15 +25,23 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
             }
         }
 
-        public ICommand RelocateCommand { get; }
         public ICommand ResizeCommand { get; }
         public ICommand DeleteCommand { get; }
         public ICommand HideCommand { get; }
         public ICommand ConfigureCommand { get; }
         public ICommand ShowHomeCommand { get; }
 
-        public PinnedImageViewModel()
+        public PinnedImageViewModel(
+            PinnedImage pinnedImage, 
+            IPinnedImageAppService pinnedImageAppService, 
+            IViewLauncher mainWindowLauncher)
         {
+            Image = pinnedImage;
+
+            _pinnedImageAppService = pinnedImageAppService;
+
+            _mainWindowLauncher = mainWindowLauncher;
+
             HideCommand = new RelayCommand(() => PinnedImageDisplayHost?.Close());
         }
     }

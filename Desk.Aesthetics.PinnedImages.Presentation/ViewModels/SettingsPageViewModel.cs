@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Linq;
 using System.Security.Principal;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -63,12 +64,20 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
             SetStartupBehaviorCommand = new AsyncParameterizedRelayCommand<bool>(
                 SetStartupBehavior,
                 null,
-                (e) => { }) ;
+                (ex) => 
+                {
+                    _ = MessageBox.Show(ex.Message);
+                    AppTextFileLoggerSource.GetInstance().Log(ex);
+                }) ;
 
             SetAccentColorCommand = new AsyncParameterizedRelayCommand<Color>(
                 SetColor,
                 null,
-                (e) => { });
+                (ex) =>
+                {
+                    _ = MessageBox.Show(ex.Message);
+                    AppTextFileLoggerSource.GetInstance().Log(ex);
+                });
         }
 
         private void SetStartupBehavior(bool startWithWindows)

@@ -60,6 +60,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Application\ColorsFromFileQuery.cs" />
+    <Compile Include="Application\IPinnedImageAppService.cs" />
     <Compile Include="Application\IPinnedImagesAppService.cs" />
     <Compile Include="BindObservable.cs" />
     <Compile Include="Commands\AsyncCommandBase.cs" />
@@ -74,7 +75,12 @@
     <Compile Include="Converters\ImageDirectoryPathToBitmapConverter.cs" />
     <Compile Include="Converters\ShadowToDropShadowEffectConverter.cs" />
     <Compile Include="Converters\WindowStateToDrawingGroupConverter.cs" />
+    <Compile Include="IAppInitializer.cs" />
     <Compile Include="IApplicationViewComponent.cs" />
+    <Compile Include="IExceptionLogger.cs" />
+    <Compile Include="IPinnedImageAppServiceFactory.cs" />
+    <Compile Include="IViewLauncher.cs" />
+    <Compile Include="MainWindowViewLauncher.cs" />
     <Compile Include="Models\Caption.cs" />
     <Compile Include="Models\Dimension.cs" />
     <Compile Include="Models\Location.cs" />
@@ -91,7 +97,9 @@
     <Compile Include="PinnedImageWindow.xaml.cs">
       <DependentUpon>PinnedImageWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PinnedImageWindowViewLauncher.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\PinnedImagesViewModel.cs" />
     <Compile Include="ViewModels\PinnedImageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

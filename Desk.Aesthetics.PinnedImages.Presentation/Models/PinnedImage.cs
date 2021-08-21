@@ -7,10 +7,10 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.Models
         private double _frameThickness;
         private double _rotationAngle;
 
-        public PinnedImage(Guid id, string path, Dimension dimension, Location location, double frameThickness, double rotationAngle, Caption caption, Shadow shadow)
+        public PinnedImage(Guid id, string directory, Dimension dimension, Location location, double frameThickness, double rotationAngle, Caption caption, Shadow shadow)
         {
             Id = id;
-            Path = path;
+            Directory = directory;
             Dimension = dimension;
             Location = location;
             _frameThickness = frameThickness;
@@ -20,7 +20,7 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.Models
         }
 
         public Guid Id { get; }
-        public string Path { get; }
+        public string Directory { get; }
         public Dimension Dimension{ get; }
         public Location Location { get; }
         public double FrameThickness

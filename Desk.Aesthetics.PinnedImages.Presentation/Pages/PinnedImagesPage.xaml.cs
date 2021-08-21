@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Desk.Aesthetics.PinnedImages.Presentation.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +19,16 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.Pages
     /// <summary>
     /// Interaction logic for PinnedImagesPage.xaml
     /// </summary>
-    public partial class PinnedImagesPage : Page
+    public partial class PinnedImagesPage : Page, IApplicationViewComponent<PinnedImagesViewModel>
     {
         public PinnedImagesPage()
         {
             InitializeComponent();
+        }
+
+        public PinnedImagesViewModel GetViewModel()
+        {
+            return VM;
         }
     }
 }

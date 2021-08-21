@@ -4,11 +4,15 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation.Pages"
+      xmlns:viewmodels="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PinnedImagesPage">
+    <Page.DataContext>
+        <viewmodels:PinnedImagesViewModel x:Name="VM"/>
+    </Page.DataContext>
 
     <Grid>
-        <TextBlock>Test </TextBlock>
+        <TextBlock>Test</TextBlock>
     </Grid>
 </Page>
