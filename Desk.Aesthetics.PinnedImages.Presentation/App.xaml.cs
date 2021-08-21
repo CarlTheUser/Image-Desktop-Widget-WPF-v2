@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Desk.Aesthetics.PinnedImages.Infrastructure.Data.Display;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Threading;
 using System.Windows;
@@ -26,11 +28,13 @@ namespace Desk.Aesthetics.PinnedImages.Presentation
                 Current.Shutdown();
             }
 
+            string connection = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
+
             new DefaultAppInitializer(
-                null,
+                new AllDisplayedToDeskPinnedImageDataQuery(connection),
                 new MainWindowViewLauncher(),
                 new PinnedImageWindowViewLauncher(
-                    new DefaultPinnedImageAppServiceFactory(""))
+                    new DefaultPinnedImageAppServiceFactory(connection))
                 ).SetupView();
 
         }

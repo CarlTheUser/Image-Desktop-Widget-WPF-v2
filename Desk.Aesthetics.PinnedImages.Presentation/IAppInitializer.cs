@@ -1,5 +1,5 @@
 ﻿using Data.Common.Contracts;
-using Desk.Aesthetics.PinnedImages.Core.Data;
+using Desk.Aesthetics.PinnedImages.Data.Display;
 using Desk.Aesthetics.PinnedImages.Presentation.Models;
 using System.Collections.Generic;
 using System.Linq;

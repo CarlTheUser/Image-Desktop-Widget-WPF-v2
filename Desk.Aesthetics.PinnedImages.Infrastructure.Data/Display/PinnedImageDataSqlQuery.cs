@@ -13,6 +13,11 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Display
 {
     internal class PinnedImageDataSqlQuery : SqlQuery<PinnedImageData>
     {
+        public static QueryFilter IsDisplayedToDeskFilter(bool isDisplayedToDesk)
+        {
+            return new _IsDisplayedToDeskFilter(isDisplayedToDesk);
+        }
+
         private const string BASE_QUERY = "Select F.Id,F.ImageDirectory,F.FrameThickness,F.RotationAngle,F.LocationX,F.LocationY,F.Width,F.Height,F.CaptionText,F.IsCaptionDisplayed,F.ShadowOpacity,F.ShadowDepth,F.ShadowDirection,F.ShadowBlurRadius,F.IsShadowHidden From FlattenedPinnedImages F ";
 
         private readonly ISqlCaller _caller;
@@ -83,16 +88,16 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Display
             public bool IsShadowHidden { get; set; }
         }
 
-        private class IsDisplayedToDeskFilter : QueryFilter
+        private class _IsDisplayedToDeskFilter : QueryFilter
         {
             public bool IsDisplayedToDesk { get; set; }
 
-            public IsDisplayedToDeskFilter()
+            public _IsDisplayedToDeskFilter()
             {
 
             }
 
-            public IsDisplayedToDeskFilter(bool isDisplayedToDesk)
+            public _IsDisplayedToDeskFilter(bool isDisplayedToDesk)
             {
                 IsDisplayedToDesk = isDisplayedToDesk;
             }

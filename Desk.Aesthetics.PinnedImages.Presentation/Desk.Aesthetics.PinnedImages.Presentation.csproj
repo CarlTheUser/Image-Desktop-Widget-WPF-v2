@@ -215,6 +215,18 @@
       <Project>{04A4C1B7-E8D1-4DD3-BAC4-60CCD2136551}</Project>
       <Name>Desk.Aesthetics.PinnedImages.Data.Display</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Desk.Aesthetics.PinnedImages.Infrastructure.Data\Desk.Aesthetics.PinnedImages.Infrastructure.Data.csproj">
+      <Project>{7A0E7111-10FC-4787-AF04-AEFCD5A054BD}</Project>
+      <Name>Desk.Aesthetics.PinnedImages.Infrastructure.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="x64\SQLite.Interop.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="x86\SQLite.Interop.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

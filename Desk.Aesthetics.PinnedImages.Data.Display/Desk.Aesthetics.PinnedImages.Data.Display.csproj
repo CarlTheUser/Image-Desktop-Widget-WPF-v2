@@ -44,7 +44,6 @@
     <Compile Include="PinnedImageData.cs" />
     <Compile Include="PinnedImageListItemData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecordQueryOptions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

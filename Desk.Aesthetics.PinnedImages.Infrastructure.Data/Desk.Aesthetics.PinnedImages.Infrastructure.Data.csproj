@@ -47,6 +47,7 @@
     <Compile Include="Core\PinnedImageDataByIdQuery.cs" />
     <Compile Include="Core\PinnedImageDataDestoryer.cs" />
     <Compile Include="Core\PinnedImageDataWriter.cs" />
+    <Compile Include="Display\AllDisplayedToDeskPinnedImageDataQuery.cs" />
     <Compile Include="Display\PinnedImageDataSqlQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SQLiteUtility.cs" />
