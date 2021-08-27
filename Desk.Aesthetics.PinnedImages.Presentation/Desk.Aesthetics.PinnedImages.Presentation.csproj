@@ -79,6 +79,8 @@
     <Compile Include="IApplicationViewComponent.cs" />
     <Compile Include="IExceptionLogger.cs" />
     <Compile Include="IPinnedImageAppServiceFactory.cs" />
+    <Compile Include="IUserPrompt.cs" />
+    <Compile Include="IUserNotification.cs" />
     <Compile Include="IViewLauncher.cs" />
     <Compile Include="MainWindowViewLauncher.cs" />
     <Compile Include="Models\Caption.cs" />
@@ -98,6 +100,7 @@
       <DependentUpon>PinnedImageWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PinnedImageWindowViewLauncher.cs" />
+    <Compile Include="View.Misc\OpenFileDialogPrompt.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\PinnedImagesViewModel.cs" />
     <Compile Include="ViewModels\PinnedImageViewModel.cs" />
@@ -228,5 +231,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Linq;
 using System.Threading;
 using System.Windows;
+using System.Xml.Linq;
 
 namespace Desk.Aesthetics.PinnedImages.Presentation
 {
@@ -14,19 +15,24 @@ namespace Desk.Aesthetics.PinnedImages.Presentation
     {
         private const string APP_NAME = "PinnedImages";
 
-        private readonly Mutex _mutex;
-
-        private bool _isNewInstance;
-
         public App() : base()
         {
-            _mutex = new Mutex(true, APP_NAME, out _isNewInstance);
+            _ = new Mutex(true, APP_NAME, out bool isNewInstance);
 
-            if (!_isNewInstance)
-            {
-                _ = MessageBox.Show("An instance of the application is already running.", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
-                Current.Shutdown();
+            if (!isNewInstance)
+            { 
+                MessageBoxResult result = MessageBox.Show("An instance of the application is already running.", System.Reflection.Assembly.GetExecutingAssembly().GetName().Name);
+                
+                if(result == MessageBoxResult.OK)
+                {
+                    Current.Shutdown();
+                }
             }
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
 
             string connection = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
 
@@ -37,11 +43,6 @@ namespace Desk.Aesthetics.PinnedImages.Presentation
                     new DefaultPinnedImageAppServiceFactory(connection))
                 ).SetupView();
 
-        }
-
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
             Activated += App_Activated;
         }
 
@@ -53,13 +54,15 @@ namespace Desk.Aesthetics.PinnedImages.Presentation
             {
                 foreach(PinnedImageWindow window in pinnedImageWindows)
                 {
-                    if (window.WindowState == WindowState.Minimized) window.WindowState = WindowState.Normal;
-                    window.Show();
-                    window.Visibility = Visibility.Visible;
+                    if (window.WindowState == WindowState.Minimized)
+                    {
+                        window.WindowState = WindowState.Normal;
+                        window.Show();
+                        //window.Visibility = Visibility.Visible;
+                    }
                 }
             }
         }
-
 
     }
 }

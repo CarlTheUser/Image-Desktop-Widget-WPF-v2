@@ -12,6 +12,8 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.Application
         void HideFromDesk(Guid pinnedImage);
 
         void DisplayToDesk(Guid pinnedImage);
+
+        void RemoveImage(Guid pinnedImage);
     }
 
     public class PinnedImagesAppService : IPinnedImagesAppService
@@ -20,10 +22,16 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.Application
 
         private readonly ISetDeskDisplayService _setDeskDisplayService;
 
-        public PinnedImagesAppService(IPinNewImageService pinNewImageService, ISetDeskDisplayService setDeskDisplayService)
+        private readonly IDeletePinnedImageService _deletePinnedImageService;
+
+        public PinnedImagesAppService(
+            IPinNewImageService pinNewImageService, 
+            ISetDeskDisplayService setDeskDisplayService,
+            IDeletePinnedImageService deletePinnedImageService)
         {
             _pinNewImageService = pinNewImageService;
             _setDeskDisplayService = setDeskDisplayService;
+            _deletePinnedImageService = deletePinnedImageService;
         }
 
         public PinnedImage PinNewImageWithDefaults(string filepath)
@@ -66,6 +74,11 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.Application
         public void DisplayToDesk(Guid pinnedImage)
         {
             _setDeskDisplayService.SetDeskDisplay(new DeskDisplayData(pinnedImage, true));
+        }
+
+        public void RemoveImage(Guid pinnedImage)
+        {
+            _deletePinnedImageService.Delete(pinnedImage);
         }
     }
 }

@@ -12,7 +12,13 @@
         <viewmodels:PinnedImagesViewModel x:Name="VM"/>
     </Page.DataContext>
 
-    <Grid>
-        <TextBlock>Test</TextBlock>
-    </Grid>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Orientation="Vertical">
+            <TextBlock Text="Gallery" 
+                       FontSize="18pt"
+                       Margin="12 12"/>
+            
+            
+        </StackPanel>
+    </ScrollViewer>
 </Page>

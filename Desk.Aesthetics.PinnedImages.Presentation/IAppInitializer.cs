@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace Desk.Aesthetics.PinnedImages.Presentation
 {
+    //App.xaml.cs
     public interface IAppInitializer
     {
         void SetupView();
