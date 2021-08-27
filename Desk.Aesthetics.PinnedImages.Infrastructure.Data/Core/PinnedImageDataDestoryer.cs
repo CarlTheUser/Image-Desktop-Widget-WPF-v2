@@ -45,6 +45,7 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
             catch
             {
                 transaction.Rollback();
+                throw;
             }
             finally
             {

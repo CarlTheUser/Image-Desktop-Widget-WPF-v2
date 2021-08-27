@@ -15,7 +15,7 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
         {
             _ = transaction.ExecuteNonQuery(
                 provider.CreateCommand(
-                    "Insert Into FlattenedPinnedImages(Id,ImageDirectory,IsDisplayedToDesk,FrameThickness,RotationAngle,LocationX,LocationY,Width,Height,CaptionText,IsCaptionDisplayed,ShadowOpacity,ShadowDepth,ShadowDirection,ShadowBlurRadius,IsShadowHidden) Values (@Id,@ImageDirectory,@IsDisplayedToDesk,@FrameThickness,@RotationAngle,@LocationX,@LocationY,@Width,@Height,@CaptionText,@IsCaptionDisplayed,@ShadowOpacity,@ShadowDepth,@ShadowDirection,@ShadowBlurRadius,@IsShadowHidden);",
+                    "Insert Into FlattenedPinnedImages(Id,ImageDirectory,IsDisplayedToDesk,FrameThickness,RotationAngle,LocationX,LocationY,Width,Height,CaptionText,IsCaptionDisplayed,ShadowOpacity,ShadowDepth,ShadowDirection,ShadowBlurRadius,IsShadowHidden,Created) Values (@Id,@ImageDirectory,@IsDisplayedToDesk,@FrameThickness,@RotationAngle,@LocationX,@LocationY,@Width,@Height,@CaptionText,@IsCaptionDisplayed,@ShadowOpacity,@ShadowDepth,@ShadowDirection,@ShadowBlurRadius,@IsShadowHidden,@Created);",
                     CommandType.Text,
                     provider.CreateInputParameters(
                         new
@@ -35,7 +35,8 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
                             row.ShadowDepth,
                             row.ShadowDirection,
                             row.ShadowBlurRadius,
-                            row.IsShadowHidden
+                            row.IsShadowHidden,
+                            row.Created
                         }, "@")));
         }
 
@@ -43,7 +44,7 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
         {
             _ = transaction.ExecuteNonQuery(
                 provider.CreateCommand(
-                    "Update FlattenedPinnedImages Set ImageDirectory=@ImageDirectory,IsDisplayedToDesk=@IsDisplayedToDesk,FrameThickness=@FrameThickness,RotationAngle=@RotationAngle,LocationX=@LocationX,LocationY=@LocationY,Width=@Width,Height=@Height,CaptionText=@CaptionText,IsCaptionDisplayed=@IsCaptionDisplayed,ShadowOpacity=@ShadowOpacity,ShadowDepth=@ShadowDepth,ShadowDirection=@ShadowDirection,ShadowBlurRadius=@ShadowBlurRadius,IsShadowHidden=@IsShadowHidden Where Id=@Id;",
+                    "Update FlattenedPinnedImages Set ImageDirectory=@ImageDirectory,IsDisplayedToDesk=@IsDisplayedToDesk,FrameThickness=@FrameThickness,RotationAngle=@RotationAngle,LocationX=@LocationX,LocationY=@LocationY,Width=@Width,Height=@Height,CaptionText=@CaptionText,IsCaptionDisplayed=@IsCaptionDisplayed,ShadowOpacity=@ShadowOpacity,ShadowDepth=@ShadowDepth,ShadowDirection=@ShadowDirection,ShadowBlurRadius=@ShadowBlurRadius,IsShadowHidden=@IsShadowHidden,Created=@Created Where Id=@Id;",
                     CommandType.Text,
                     provider.CreateInputParameters(
                         new
@@ -63,7 +64,8 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
                             row.ShadowDepth,
                             row.ShadowDirection,
                             row.ShadowBlurRadius,
-                            row.IsShadowHidden
+                            row.IsShadowHidden,
+                            row.Created
                         }, "@")));
         }
 
@@ -83,7 +85,7 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
         public IEnumerable<FlattenedPinnedImagesRow> Find(QueryFilter filter, ISqlProvider provider, SqlTransaction transaction)
         {
             DbCommand command = provider.CreateCommand(
-                "Select Id,ImageDirectory,IsDisplayedToDesk,FrameThickness,RotationAngle,LocationX,LocationY,Width,Height,CaptionText,IsCaptionDisplayed,ShadowOpacity,ShadowDepth,ShadowDirection,ShadowBlurRadius,IsShadowHidden From FlattenedPinnedImages Where " + filter.ToSqlClause(),
+                "Select Id,ImageDirectory,IsDisplayedToDesk,FrameThickness,RotationAngle,LocationX,LocationY,Width,Height,CaptionText,IsCaptionDisplayed,ShadowOpacity,ShadowDepth,ShadowDirection,ShadowBlurRadius,IsShadowHidden,Created From FlattenedPinnedImages Where " + filter.ToSqlClause(),
                 CommandType.Text,
                 filter.GetParameters());
 

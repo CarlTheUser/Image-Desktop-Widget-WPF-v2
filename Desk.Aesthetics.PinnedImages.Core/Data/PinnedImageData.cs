@@ -20,8 +20,9 @@ namespace Desk.Aesthetics.PinnedImages.Core.Data
         public double ShadowDirection { get; }
         public double ShadowBlurRadius { get; }
         public bool IsShadowHidden { get; }
+        public DateTime Created { get; }
 
-        public PinnedImageData(Guid id, string imageDirectory, bool isDisplayedToDesk, double frameThickness, double rotationAngle, double locationX, double locationY, double width, double height, string captionText, bool isCaptionDisplayed, double shadowOpacity, double shadowDepth, double shadowDirection, double shadowBlurRadius, bool isShadowHidden)
+        public PinnedImageData(Guid id, string imageDirectory, bool isDisplayedToDesk, double frameThickness, double rotationAngle, double locationX, double locationY, double width, double height, string captionText, bool isCaptionDisplayed, double shadowOpacity, double shadowDepth, double shadowDirection, double shadowBlurRadius, bool isShadowHidden, DateTime created)
         {
             Id = id;
             ImageDirectory = imageDirectory;
@@ -39,6 +40,7 @@ namespace Desk.Aesthetics.PinnedImages.Core.Data
             ShadowDirection = shadowDirection;
             ShadowBlurRadius = shadowBlurRadius;
             IsShadowHidden = isShadowHidden;
+            Created = created;
         }
     }
 }

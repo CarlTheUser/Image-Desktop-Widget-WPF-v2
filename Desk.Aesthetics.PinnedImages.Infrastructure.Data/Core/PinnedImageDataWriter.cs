@@ -50,6 +50,7 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
                     existing.ShadowDirection = data.ShadowDirection;
                     existing.ShadowBlurRadius = data.ShadowBlurRadius;
                     existing.IsShadowHidden = data.IsShadowHidden.ToSqliteValue();
+                    existing.Created = data.Created.Ticks;
 
                     _dao.UpdateItem(
                         existing,
@@ -76,7 +77,8 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
                             ShadowDepth = data.ShadowDepth,
                             ShadowDirection = data.ShadowDirection,
                             ShadowBlurRadius = data.ShadowBlurRadius,
-                            IsShadowHidden = data.IsShadowHidden.ToSqliteValue()
+                            IsShadowHidden = data.IsShadowHidden.ToSqliteValue(),
+                            Created = data.Created.Ticks
                         },
                         _provider,
                         transaction);
@@ -86,6 +88,7 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
             catch
             {
                 transaction.Rollback();
+                throw;
             }
             finally
             {

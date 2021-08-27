@@ -20,5 +20,6 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
         public double ShadowDirection { get; set; }
         public double ShadowBlurRadius { get; set; }
         public int IsShadowHidden { get; set; }
+        public long Created { get; set; }
     }
 }
