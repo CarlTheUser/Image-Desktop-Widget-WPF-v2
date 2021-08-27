@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 
@@ -51,6 +52,8 @@ namespace Desk.Aesthetics.PinnedImages.Core.Service
 
                 string dumpDir = Path.Combine(_imageDirectory, imageDirectoryName);
 
+                Directory.CreateDirectory(dumpDir);
+
                 PinnedImage pinnedImage = PinnedImage.New(
                 new ImageDirectory(imageDirectoryName),
                 newPinnedImageData.FrameThickness,
@@ -64,8 +67,7 @@ namespace Desk.Aesthetics.PinnedImages.Core.Service
                     newPinnedImageData.ShadowDirection,
                     newPinnedImageData.ShadowBlurRadius, false));
 
-                //pinnedImageBitmap.Save(Path.Combine(dumpDir, "original" + extension));
-                pinnedImageBitmap.Save(Path.Combine(dumpDir, "original"));
+                pinnedImageBitmap.Save(Path.Combine(dumpDir, "original" + extension));
 
                 const int maxThumbnailWidth = 1280;
                 const int maxThumbnailHeight = 720;
@@ -99,8 +101,7 @@ namespace Desk.Aesthetics.PinnedImages.Core.Service
                 graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 graphics.DrawImage(pinnedImageBitmap, 0, 0, (int)thumbnailWidth, (int)thumbnailHeight);
 
-                //thumbnail.Save(Path.Combine(Path.Combine(dumpDir, "thumb" + extension)));
-                thumbnail.Save(Path.Combine(Path.Combine(dumpDir, "thumb")));
+                thumbnail.Save(Path.Combine(dumpDir, "thumb" + extension));
 
                 PinnedImageData pinnedImageData = new PinnedImageData(
                 pinnedImage.Id,

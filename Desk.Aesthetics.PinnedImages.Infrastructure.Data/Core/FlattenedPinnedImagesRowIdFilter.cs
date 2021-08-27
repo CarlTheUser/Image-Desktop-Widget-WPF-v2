@@ -20,7 +20,7 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
 
         public override string ToSqlClause()
         {
-            return $"Id = = X'{Id.ToByteArray().FormatBytesString()}'";
+            return $"Id = X'{Id.ToByteArray().FormatBytesString()}'";
         }
     }
 }

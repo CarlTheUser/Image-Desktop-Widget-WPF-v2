@@ -52,7 +52,8 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
                         existing.ShadowDepth,
                         existing.ShadowDirection,
                         existing.ShadowBlurRadius,
-                        existing.IsShadowHidden.FromSqliteInt());
+                        existing.IsShadowHidden.FromSqliteInt(),
+                        new DateTime(existing.Created));
                 }
 
                 transaction.Commit();

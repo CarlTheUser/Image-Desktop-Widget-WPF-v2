@@ -62,7 +62,8 @@ namespace Desk.Aesthetics.PinnedImages.Core.Service
                     pinnedImage.Shadow.Depth,
                     pinnedImage.Shadow.Direction,
                     pinnedImage.Shadow.BlurRadius,
-                    pinnedImage.Shadow.IsHidden));
+                    pinnedImage.Shadow.IsHidden,
+                    existing.Created));
         }
     }
 }

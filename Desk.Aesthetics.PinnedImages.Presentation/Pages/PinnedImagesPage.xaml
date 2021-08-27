@@ -17,8 +17,12 @@
             <TextBlock Text="Gallery" 
                        FontSize="18pt"
                        Margin="12 12"/>
-            
-            
+
+            <Button HorizontalAlignment="Left"
+                    Margin="12 12"
+                    Command="{Binding ElementName=VM, Path=PinNewImageCommand}">
+                Pin an Image
+            </Button>
         </StackPanel>
     </ScrollViewer>
 </Page>

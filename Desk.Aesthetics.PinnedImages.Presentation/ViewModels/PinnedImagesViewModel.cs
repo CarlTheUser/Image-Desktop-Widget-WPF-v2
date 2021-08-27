@@ -1,11 +1,15 @@
 ﻿using Data.Common.Contracts;
+using Desk.Aesthetics.PinnedImages.Core.Service;
 using Desk.Aesthetics.PinnedImages.Data.Display;
+using Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core;
 using Desk.Aesthetics.PinnedImages.Presentation.Application;
 using Desk.Aesthetics.PinnedImages.Presentation.Commands;
 using Desk.Aesthetics.PinnedImages.Presentation.Models;
 using Desk.Aesthetics.PinnedImages.Presentation.View.Misc;
 using System;
 using System.Collections.ObjectModel;
+using System.Configuration;
+using System.Data.Common;
 using System.Windows.Input;
 
 namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
@@ -37,15 +41,37 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
         public ICommand PinNewImageCommand { get; }
         public ICommand RemoveImageCommand { get; }
         public ICommand ToggleDisplayToDeskCommand { get; }
-
         public PinnedImagesViewModel()
         {
+            string connection = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
+
+            PinnedImageDataByIdQuery query = new PinnedImageDataByIdQuery(connection);
+            PinnedImageDataWriter dataWriter = new PinnedImageDataWriter(connection);
+
+            _pinnedImagesAppService = new PinnedImagesAppService(
+                new PinNewImageService(
+                    ConfigurationManager.AppSettings["PinnedImages.Directory"],
+                    dataWriter),
+                new SetDeskDisplayService(
+                    query,
+                    dataWriter),
+                new DeletePinnedImageService(
+                    query,
+                    new PinnedImageDataDestoryer(connection)));
+
+            _mainWindowViewLauncher = new MainWindowViewLauncher();
+
+            _pinnedImageWindowViewLauncher = new PinnedImageWindowViewLauncher(
+                    new DefaultPinnedImageAppServiceFactory(connection));
+
+            _openFileDialogPrompt = new OpenFileDialogPrompt();
+
             PinNewImageCommand = new RelayCommand(PinNewImmage);
 
             RemoveImageCommand = new AsyncParameterizedRelayCommand<PinnedImageListItem>(
                 RemoveImage,
                 null,
-                (e) => 
+                (e) =>
                 {
 
                 });
