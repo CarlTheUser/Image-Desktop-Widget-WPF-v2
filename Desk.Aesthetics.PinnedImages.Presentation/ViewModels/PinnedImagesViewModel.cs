@@ -10,6 +10,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.Common;
+using System.IO;
 using System.Windows.Input;
 
 namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
@@ -43,26 +44,30 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
         public ICommand ToggleDisplayToDeskCommand { get; }
         public PinnedImagesViewModel()
         {
-            string connection = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
+            string connection = ConfigurationManager.ConnectionStrings["LocalDb"].ConnectionString;
 
             PinnedImageDataByIdQuery query = new PinnedImageDataByIdQuery(connection);
             PinnedImageDataWriter dataWriter = new PinnedImageDataWriter(connection);
 
+            string pinnedImagesDirectory = ConfigurationManager.AppSettings["PinnedImages.Directory"];
+
             _pinnedImagesAppService = new PinnedImagesAppService(
                 new PinNewImageService(
-                    ConfigurationManager.AppSettings["PinnedImages.Directory"],
+                    pinnedImagesDirectory,
+                    ConfigurationManager.AppSettings["PinnedImages.OutputExtension"],
                     dataWriter),
                 new SetDeskDisplayService(
                     query,
                     dataWriter),
                 new DeletePinnedImageService(
+                    pinnedImagesDirectory,
                     query,
                     new PinnedImageDataDestoryer(connection)));
 
             _mainWindowViewLauncher = new MainWindowViewLauncher();
 
             _pinnedImageWindowViewLauncher = new PinnedImageWindowViewLauncher(
-                    new DefaultPinnedImageAppServiceFactory(connection));
+                    new DefaultPinnedImageAppServiceFactory(connection, pinnedImagesDirectory));
 
             _openFileDialogPrompt = new OpenFileDialogPrompt();
 

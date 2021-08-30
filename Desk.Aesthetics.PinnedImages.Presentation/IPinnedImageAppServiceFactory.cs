@@ -1,6 +1,7 @@
 ﻿using Desk.Aesthetics.PinnedImages.Core.Service;
 using Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core;
 using Desk.Aesthetics.PinnedImages.Presentation.Application;
+using System.Configuration;
 
 namespace Desk.Aesthetics.PinnedImages.Presentation
 {
@@ -12,10 +13,12 @@ namespace Desk.Aesthetics.PinnedImages.Presentation
     public class DefaultPinnedImageAppServiceFactory : IPinnedImageAppServiceFactory
     {
         private readonly string _connection;
+        private readonly string _pinnedImageDirectory;
 
-        public DefaultPinnedImageAppServiceFactory(string connection)
+        public DefaultPinnedImageAppServiceFactory(string connection, string pinnedImageDirectory)
         {
             _connection = connection;
+            _pinnedImageDirectory = pinnedImageDirectory;
         }
 
         public IPinnedImageAppService Create()
@@ -31,6 +34,7 @@ namespace Desk.Aesthetics.PinnedImages.Presentation
                     query,
                     dataWriter),
                 new DeletePinnedImageService(
+                    _pinnedImageDirectory,
                     query,
                     new PinnedImageDataDestoryer(_connection)));
         }

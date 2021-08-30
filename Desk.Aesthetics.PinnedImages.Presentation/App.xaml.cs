@@ -34,13 +34,15 @@ namespace Desk.Aesthetics.PinnedImages.Presentation
         {
             base.OnStartup(e);
 
-            string connection = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
+            string connection = ConfigurationManager.ConnectionStrings["LocalDb"].ConnectionString;
 
             new DefaultAppInitializer(
                 new AllDisplayedToDeskPinnedImageDataQuery(connection),
                 new MainWindowViewLauncher(),
                 new PinnedImageWindowViewLauncher(
-                    new DefaultPinnedImageAppServiceFactory(connection))
+                    new DefaultPinnedImageAppServiceFactory(
+                        connection,
+                        ConfigurationManager.AppSettings["PinnedImages.Directory"]))
                 ).SetupView();
 
             Activated += App_Activated;
