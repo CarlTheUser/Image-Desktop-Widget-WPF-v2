@@ -106,7 +106,7 @@ namespace Desk.Aesthetics.PinnedImages.Core.Service
                 graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 graphics.DrawImage(pinnedImageBitmap, 0, 0, (int)thumbnailWidth, (int)thumbnailHeight);
 
-                thumbnail.Save(Path.Combine(dumpDir, "thumb.i"));
+                thumbnail.Save(Path.Combine(dumpDir, $"thumb.{_outputFileExtension}"));
 
                 PinnedImageData pinnedImageData = new PinnedImageData(
                 pinnedImage.Id,
