@@ -13,8 +13,8 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.Models
             Directory = directory;
             Dimension = dimension;
             Location = location;
-            _frameThickness = frameThickness;
-            _rotationAngle = rotationAngle;
+            FrameThickness = frameThickness;
+            RotationAngle = rotationAngle;
             Caption = caption;
             Shadow = shadow;
         }

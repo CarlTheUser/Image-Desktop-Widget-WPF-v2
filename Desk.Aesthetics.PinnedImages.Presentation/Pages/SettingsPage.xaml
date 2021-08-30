@@ -42,6 +42,11 @@
                       BorderThickness="0"
                       HorizontalAlignment="Left"
                       MaxWidth="300">
+                <ListView.Template>
+                    <ControlTemplate TargetType="ListView">
+                        <ItemsPresenter></ItemsPresenter>
+                    </ControlTemplate>
+                </ListView.Template>
                 <ListView.Resources>
                     <Style TargetType="Button" 
                            x:Key="ColorButton">
@@ -93,7 +98,8 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Button x:Name="ColorButtonElement" Width="40"
+                        <Button x:Name="ColorButtonElement" 
+                                Width="40"
                                 Height="40"
                                 DataContext="{Binding}"
                                 Style="{StaticResource ColorButton}"

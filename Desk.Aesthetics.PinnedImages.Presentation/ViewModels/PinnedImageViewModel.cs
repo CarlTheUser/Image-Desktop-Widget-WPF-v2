@@ -13,6 +13,8 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
 
         private PinnedImage _pinnedImage;
 
+        private bool _isDeleted = false;
+
         public IPinnedImageDisplayHost PinnedImageDisplayHost { get; set; }
 
         public PinnedImage Image
@@ -43,6 +45,25 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
             _mainWindowLauncher = mainWindowLauncher;
 
             HideCommand = new RelayCommand(() => PinnedImageDisplayHost?.Close());
+
+            ShowHomeCommand = new RelayCommand(() => _mainWindowLauncher.Launch());
+
+            DeleteCommand = new RelayCommand(Delete);
+        }
+
+        private void Delete()
+        {
+            _pinnedImageAppService.DeletePinnedImage(Image.Id);
+            _isDeleted = true;
+            PinnedImageDisplayHost?.Close();
+        }
+
+        public void SaveFrameLocationAndDimension()
+        {
+            if (!_isDeleted)
+            {
+                _pinnedImageAppService.SaveCurrentDisplayHostParameters(Image);
+            }
         }
     }
 }

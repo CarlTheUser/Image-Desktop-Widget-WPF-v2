@@ -122,14 +122,9 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
 
             IEnumerable<Color> colors = colorsFromJsonFileQuery.Execute(ConfigurationManager.AppSettings["Colors.Json"]);
 
-            if(colors.FirstOrDefault() != null)
-            {
-                Colors = new ObservableCollection<Color>(colors);
-            }
-            else
-            {
-                Colors = new ObservableCollection<Color>(GetFallbackColors());
-            }
+            Colors = colors.FirstOrDefault() != null
+                ? new ObservableCollection<Color>(colors)
+                : new ObservableCollection<Color>(GetFallbackColors());
         }
 
         private IEnumerable<Color> GetFallbackColors()

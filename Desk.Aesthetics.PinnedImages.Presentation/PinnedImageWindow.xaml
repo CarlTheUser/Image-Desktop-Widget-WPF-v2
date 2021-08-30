@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         xmlns:converters="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation.Converters"
         xmlns:appproperties="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation.Properties"
-        xmlns:viewmodels="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation.ViewModels"
+        xmlns:viewmodels="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:PinnedImageViewModel}"
         Title="PinnedImageWindow" 
         d:Width="300"
         d:Height="225"
@@ -15,8 +15,13 @@
         MinWidth="150"
         MaxHeight="562.5"
         MaxWidth="750"
-        Name="PinnedImageDisplayHostWindow"
-        MouseDown="PinnedImageDisplayHost_MouseDown">
+        Width="{Binding Image.Dimension.Width, Mode=TwoWay}"
+        Height="{Binding Image.Dimension.Height, Mode=TwoWay}"
+        Top="{Binding Image.Location.Y, Mode=TwoWay}"
+        Left="{Binding Image.Location.X, Mode=TwoWay}"
+        Name="This"
+        MouseDown="PinnedImageDisplayHost_MouseDown"
+        Closed="This_Closed">
     <Window.Style>
         <Style TargetType="Window">
             <Setter Property="WindowChrome.WindowChrome">
@@ -97,16 +102,13 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <!--<Window.DataContext>
-        <viewmodels:PinnedImageViewModel  x:Name="VM" />
-    </Window.DataContext>-->
     <Grid>
         <StackPanel
             Name="ActionButtonsContainer"
             Orientation="Horizontal"
             d:Visibility="Visible"
             Visibility="{Binding 
-                            ElementName=PinnedImageDisplayHostWindow, 
+                            ElementName=This, 
                             Path=IsActive,
                             Converter={StaticResource BoolToVisibilityConverter}}"
             VerticalAlignment="Top"
@@ -135,39 +137,39 @@
                 </Style>
             </StackPanel.Resources>
             <Button Style="{StaticResource PinnedImageActionButton}"
-                    Command="{Binding ElementName=VM, Path=HideCommand}">
+                    Command="{Binding HideCommand}">
                 <Button.Content>
                     <Image Source="{StaticResource CloseIcon16x16}" Stretch="None"/>
                 </Button.Content>
             </Button>
             <Button Style="{StaticResource PinnedImageActionButton}"
-                    Command="{Binding ElementName=VM, Path=ShowHomeCommand}">
+                    Command="{Binding ShowHomeCommand}">
                 <Button.Content>
                     <Image Source="{StaticResource HomeIcon16x16}" Stretch="None"/>
                 </Button.Content>
             </Button>
             <Button Style="{StaticResource PinnedImageActionButton}"
-                    Command="{Binding ElementName=VM, Path=ConfigureCommand}">
+                    Command="{Binding ConfigureCommand}">
                 <Button.Content>
                     <Image Source="{StaticResource SettingsIcon16x16}" Stretch="None"/>
                 </Button.Content>
             </Button>
             <Button Style="{StaticResource PinnedImageActionButton}"
-                    Command="{Binding ElementName=VM, Path=DeleteCommand}">
+                    Command="{Binding DeleteCommand}">
                 <Button.Content>
                     <Image Source="{StaticResource DeleteIcon16x16}" Stretch="None"/>
                 </Button.Content>
             </Button>
         </StackPanel>
-        
+
         <Border x:Name="PinnedImageBorder"
                 Margin="8 3 8 12"
                 UseLayoutRounding="True"
                 d:Background="#323232"
                 d:BorderThickness="12"
-                BorderThickness="{Binding ElementName=VM, Path=Image.FrameThickness}"
+                BorderThickness="{Binding Image.FrameThickness}"
                 d:BorderBrush="#FAFAFA"
-                Effect="{Binding ElementName=VM, Path=Image.Shadow, Converter={StaticResource ShadowToDropShadowEffectConverter}, UpdateSourceTrigger=PropertyChanged}">
+                BorderBrush="#FAFAFA">
             <d:Border.Effect>
                 <DropShadowEffect
                     Opacity="0.4"
@@ -175,11 +177,19 @@
                     Direction="270"
                     BlurRadius="6"/>
             </d:Border.Effect>
+            <Border.Effect>
+                <DropShadowEffect
+                    Opacity="{Binding Image.Shadow.Opacity, UpdateSourceTrigger=PropertyChanged}"
+                    ShadowDepth="{Binding Image.Shadow.Depth, UpdateSourceTrigger=PropertyChanged}"
+                    Direction="{Binding Image.Shadow.Direction, UpdateSourceTrigger=PropertyChanged}"
+                    BlurRadius="{Binding Image.Shadow.BlurRadius, UpdateSourceTrigger=PropertyChanged}"
+                    Color="Black"/>
+            </Border.Effect>
             <Border.LayoutTransform>
                 <RotateTransform 
                         CenterX="0.5"
                         CenterY="0.5"
-                        Angle="{Binding ElementName=VM, Path=Image.RotationAngle, FallbackValue=0}"/>
+                        Angle="{Binding Image.RotationAngle, FallbackValue=0}"/>
             </Border.LayoutTransform>
             <Grid>
                 <Grid.RowDefinitions>
@@ -191,7 +201,8 @@
                     Grid.Row="0"
                     Name="Image"
                     Stretch="UniformToFill"
-                    Source="{Binding ElementName=VM, Path=Image.Path, Converter={StaticResource ImageDirectoryPathToBitmapConverter}}">
+                    Source="{Binding Image.Directory, 
+                    Converter={StaticResource ImageDirectoryPathToBitmapConverter}}">
                     <d:Image.Source>
                         <BitmapImage CacheOption="OnLoad"
                             UriSource="pack://application:,,,/Resources/Images/Kim So Hyun.jpg"/>
@@ -206,11 +217,11 @@
                          TextWrapping="Wrap"
                          TextAlignment="Center"
                          d:Text="Caption"
-                         Text="{Binding ElementName=VM, Path=Image.Caption.Text, Mode=TwoWay}"
+                         Text="{Binding Image.Caption.Text, Mode=TwoWay}"
                          Foreground="#323232"
                          FontSize="14"
                          Background="{Binding ElementName=PinnedImageBorder, Path=BorderBrush}"
-                         Visibility="{Binding ElementName=VM, Path=Image.Caption.Visible, Converter={StaticResource BoolToVisibilityConverter}}"
+                         Visibility="{Binding Image.Caption.Visible, Converter={StaticResource BoolToVisibilityConverter}}"
                          MaxLines="2">
                     <TextBox.Style>
                         <Style TargetType="TextBox">

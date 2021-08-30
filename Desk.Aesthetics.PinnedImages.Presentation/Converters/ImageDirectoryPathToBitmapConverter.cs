@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.Windows.Data;
@@ -6,31 +7,31 @@ using System.Windows.Media.Imaging;
 
 namespace Desk.Aesthetics.PinnedImages.Presentation.Converters
 {
-    class ImageDirectoryPathToBitmapConverter : IValueConverter
+    public class ImageDirectoryPathToBitmapConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value != null)
+            if (value != null && value.GetType() == typeof(string))
             {
-                if (value.GetType() == typeof(string))
+                string imageDirectory = value as string;
+
+                if (!string.IsNullOrWhiteSpace(imageDirectory))
                 {
-                    string imageDirectory = value as string;
+                    //I'll need to do this if I want to delete the image
+                    //otherwise it'll throw an exception from an unreleased resource
+                    BitmapImage bitmap = new BitmapImage();
 
-                    if (!string.IsNullOrWhiteSpace(imageDirectory))
-                    {
+                    bitmap.BeginInit();
+                    bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                    bitmap.UriSource = new Uri(
+                        Path.Combine(
+                            ConfigurationManager.AppSettings["PinnedImages.Directory"],
+                            imageDirectory,
+                            $"original{ConfigurationManager.AppSettings["PinnedImages.OutputExtension"]}"),
+                        UriKind.RelativeOrAbsolute);
+                    bitmap.EndInit();
 
-                        //I'll need to do this if I want to delete the image
-                        //otherwise it'll throw an exception from an unreleased resource
-                        BitmapImage bitmap = new BitmapImage();
-
-                        bitmap.BeginInit();
-                        bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                        bitmap.UriSource = new Uri(Path.Combine(imageDirectory,"original"));
-                        bitmap.EndInit();
-
-                        return bitmap;
-                    }
-
+                    return bitmap;
                 }
             }
             return Binding.DoNothing;

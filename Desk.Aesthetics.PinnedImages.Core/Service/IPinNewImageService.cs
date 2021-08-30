@@ -18,11 +18,16 @@ namespace Desk.Aesthetics.PinnedImages.Core.Service
     public class PinNewImageService : IPinNewImageService
     {
         private readonly string _imageDirectory;
+        private readonly string _outputFileExtension;
         private readonly IDataWriter<PinnedImageData> _pinnedImageDataWriter;
 
-        public PinNewImageService(string imageDirectory, IDataWriter<PinnedImageData> pinnedImageDataWriter)
+        public PinNewImageService(
+            string imageDirectory, 
+            string outputFileExtension, 
+            IDataWriter<PinnedImageData> pinnedImageDataWriter)
         {
             _imageDirectory = imageDirectory;
+            _outputFileExtension = outputFileExtension;
             _pinnedImageDataWriter = pinnedImageDataWriter;
         }
 
@@ -67,7 +72,7 @@ namespace Desk.Aesthetics.PinnedImages.Core.Service
                     newPinnedImageData.ShadowDirection,
                     newPinnedImageData.ShadowBlurRadius, false));
 
-                pinnedImageBitmap.Save(Path.Combine(dumpDir, "original" + extension));
+                pinnedImageBitmap.Save(Path.Combine(dumpDir, $"original{_outputFileExtension}"));
 
                 const int maxThumbnailWidth = 1280;
                 const int maxThumbnailHeight = 720;
@@ -101,7 +106,7 @@ namespace Desk.Aesthetics.PinnedImages.Core.Service
                 graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 graphics.DrawImage(pinnedImageBitmap, 0, 0, (int)thumbnailWidth, (int)thumbnailHeight);
 
-                thumbnail.Save(Path.Combine(dumpDir, "thumb" + extension));
+                thumbnail.Save(Path.Combine(dumpDir, "thumb.i"));
 
                 PinnedImageData pinnedImageData = new PinnedImageData(
                 pinnedImage.Id,

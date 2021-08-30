@@ -96,12 +96,16 @@
     <Compile Include="Pages\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PinnedImageSettingsWindow.xaml.cs">
+      <DependentUpon>PinnedImageSettingsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PinnedImageWindow.xaml.cs">
       <DependentUpon>PinnedImageWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="PinnedImageWindowViewLauncher.cs" />
     <Compile Include="View.Misc\OpenFileDialogPrompt.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\PinnedImageSettingsViewModel.cs" />
     <Compile Include="ViewModels\PinnedImagesViewModel.cs" />
     <Compile Include="ViewModels\PinnedImageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
@@ -124,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\SettingsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PinnedImageSettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

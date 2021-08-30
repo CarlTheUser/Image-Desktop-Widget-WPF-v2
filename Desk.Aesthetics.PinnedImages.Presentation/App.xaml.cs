@@ -58,7 +58,7 @@ namespace Desk.Aesthetics.PinnedImages.Presentation
                     {
                         window.WindowState = WindowState.Normal;
                         window.Show();
-                        //window.Visibility = Visibility.Visible;
+                        window.Visibility = Visibility.Visible;
                     }
                 }
             }
