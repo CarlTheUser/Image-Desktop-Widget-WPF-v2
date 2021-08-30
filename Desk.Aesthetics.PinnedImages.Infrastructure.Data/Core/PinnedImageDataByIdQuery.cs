@@ -37,7 +37,7 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
                 if (existing != null)
                 {
                     return new PinnedImageData(
-                        existing.Id,
+                        new Guid(existing.Id),
                         existing.ImageDirectory,
                         existing.IsDisplayedToDesk.FromSqliteInt(),
                         existing.FrameThickness,

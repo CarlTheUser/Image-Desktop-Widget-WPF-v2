@@ -1,6 +1,7 @@
 ﻿using Data.Sql;
 using Data.Sql.Mapping;
 using Data.Sql.Querying;
+using Desk.Aesthetics.PinnedImages.Utilities.Misc;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -73,13 +74,8 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
         {
             _ = transaction.ExecuteNonQuery(
                 provider.CreateCommand(
-                    "Delete From FlattenedPinnedImages Where Id=@Id;",
-                    CommandType.Text,
-                    provider.CreateInputParameters(
-                        new
-                        {
-                            row.Id
-                        }, "@")));
+                    $"Delete From FlattenedPinnedImages Where Id=X'{row.Id.FormatBytesString()}';",
+                    CommandType.Text));
         }
 
         public IEnumerable<FlattenedPinnedImagesRow> Find(QueryFilter filter, ISqlProvider provider, SqlTransaction transaction)

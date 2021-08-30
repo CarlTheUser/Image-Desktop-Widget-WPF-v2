@@ -7,7 +7,7 @@
             return b ? 1 : 0;
         }
 
-        public static bool FromSqliteInt(this int i)
+        public static bool FromSqliteInt(this long i)
         {
             return i > 0;
         }

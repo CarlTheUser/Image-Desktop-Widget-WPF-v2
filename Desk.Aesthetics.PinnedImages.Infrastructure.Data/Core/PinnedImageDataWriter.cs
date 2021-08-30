@@ -62,7 +62,7 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Core
                     _dao.InsertItem(
                         new FlattenedPinnedImagesRow
                         {
-                            Id = data.Id,
+                            Id = data.Id.ToByteArray(),
                             ImageDirectory = data.ImageDirectory,
                             IsDisplayedToDesk = data.IsDisplayedToDesk.ToSqliteValue(),
                             FrameThickness = data.FrameThickness,

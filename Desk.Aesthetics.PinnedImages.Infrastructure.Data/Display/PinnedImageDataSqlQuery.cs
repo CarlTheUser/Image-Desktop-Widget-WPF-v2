@@ -52,7 +52,7 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Display
 
             return from item in items
                    select new PinnedImageData(
-                        item.Id,
+                        new Guid(item.Id),
                         item.ImageDirectory,
                         item.FrameThickness,
                         item.RotationAngle,
@@ -61,17 +61,17 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Display
                         item.Width,
                         item.Height,
                         item.CaptionText,
-                        item.IsCaptionDisplayed,
+                        item.IsCaptionDisplayed.FromSqliteInt(),
                         item.ShadowOpacity,
                         item.ShadowDepth,
                         item.ShadowDirection,
                         item.ShadowBlurRadius,
-                        item.IsShadowHidden);
+                        item.IsShadowHidden.FromSqliteInt());
         }
 
         private class DataHolder
         {
-            public Guid Id { get; set; }
+            public byte[] Id { get; set; }
             public string ImageDirectory { get; set; }
             public double FrameThickness { get; set; }
             public double RotationAngle { get; set; }
@@ -80,12 +80,12 @@ namespace Desk.Aesthetics.PinnedImages.Infrastructure.Data.Display
             public double Width { get; set; }
             public double Height { get; set; }
             public string CaptionText { get; set; }
-            public bool IsCaptionDisplayed { get; set; }
+            public long IsCaptionDisplayed { get; set; }
             public double ShadowOpacity { get; set; }
             public double ShadowDepth { get; set; }
             public double ShadowDirection { get; set; }
             public double ShadowBlurRadius { get; set; }
-            public bool IsShadowHidden { get; set; }
+            public long IsShadowHidden { get; set; }
         }
 
         private class _IsDisplayedToDeskFilter : QueryFilter
