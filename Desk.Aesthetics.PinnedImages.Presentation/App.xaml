@@ -12,6 +12,7 @@
                 <ResourceDictionary Source="StylesDictionaries/Drawables.xaml"/>
                 <ResourceDictionary Source="StylesDictionaries/Buttons.xaml"/>
                 <ResourceDictionary Source="StylesDictionaries/CheckBoxes.xaml"/>
+                <ResourceDictionary Source="StylesDictionaries/Sliders.xaml"/>
                 <ResourceDictionary Source="StylesDictionaries/Windows.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
