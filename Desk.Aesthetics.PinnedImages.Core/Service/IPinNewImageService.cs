@@ -57,7 +57,7 @@ namespace Desk.Aesthetics.PinnedImages.Core.Service
 
                 string dumpDir = Path.Combine(_imageDirectory, imageDirectoryName);
 
-                Directory.CreateDirectory(dumpDir);
+                _ = Directory.CreateDirectory(dumpDir);
 
                 PinnedImage pinnedImage = PinnedImage.New(
                 new ImageDirectory(imageDirectoryName),
