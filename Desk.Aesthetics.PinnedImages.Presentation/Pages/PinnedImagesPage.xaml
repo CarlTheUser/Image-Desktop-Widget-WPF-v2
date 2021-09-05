@@ -23,6 +23,10 @@
                     Command="{Binding ElementName=VM, Path=PinNewImageCommand}">
                 Pin an Image
             </Button>
+
+            <ListView>
+                
+            </ListView>
         </StackPanel>
     </ScrollViewer>
 </Page>

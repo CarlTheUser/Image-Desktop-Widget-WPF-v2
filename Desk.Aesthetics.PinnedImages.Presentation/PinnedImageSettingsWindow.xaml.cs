@@ -1,4 +1,5 @@
-﻿using Desk.Aesthetics.PinnedImages.Presentation.ViewModels;
+﻿using Desk.Aesthetics.PinnedImages.Presentation.Models;
+using Desk.Aesthetics.PinnedImages.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,21 +21,29 @@ namespace Desk.Aesthetics.PinnedImages.Presentation
     /// </summary>
     public partial class PinnedImageSettingsWindow : Window, IApplicationViewComponent<PinnedImageSettingsViewModel>
     {
-        public PinnedImageSettingsViewModel VM
-        {
-            get; 
-            private set;
-        }
+        public PinnedImageSettingsViewModel VM { get; private set; }
 
         public PinnedImageSettingsWindow(PinnedImageSettingsViewModel pinnedImageSettingsViewModel)
         {
             InitializeComponent();
             DataContext = VM = pinnedImageSettingsViewModel;
+            Top = VM.Image.Location.Y + Height;
+            Left = VM.Image.Location.X;
         }
 
         public PinnedImageSettingsViewModel GetViewModel()
         {
             return VM;
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            VM.ApplyChanges();
+        }
+
+        private (double, double) CalculateInitialPositionRelativeToScreen(Location location)
+        {
+            return (0, 0);
         }
     }
 }

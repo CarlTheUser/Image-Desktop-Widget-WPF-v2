@@ -11,6 +11,8 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
 
         private readonly IViewLauncher _mainWindowLauncher;
 
+        private readonly IViewLauncher<PinnedImageSettingsViewLauncherParameter> _settingsViewLauncher;
+
         private PinnedImage _pinnedImage;
 
         private bool _isDeleted = false;
@@ -27,7 +29,6 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
             }
         }
 
-        public ICommand ResizeCommand { get; }
         public ICommand DeleteCommand { get; }
         public ICommand HideCommand { get; }
         public ICommand ConfigureCommand { get; }
@@ -36,7 +37,8 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
         public PinnedImageViewModel(
             PinnedImage pinnedImage, 
             IPinnedImageAppService pinnedImageAppService, 
-            IViewLauncher mainWindowLauncher)
+            IViewLauncher mainWindowLauncher,
+            IViewLauncher<PinnedImageSettingsViewLauncherParameter> settingsViewLauncher)
         {
             Image = pinnedImage;
 
@@ -44,11 +46,15 @@ namespace Desk.Aesthetics.PinnedImages.Presentation.ViewModels
 
             _mainWindowLauncher = mainWindowLauncher;
 
-            HideCommand = new RelayCommand(() => PinnedImageDisplayHost?.Close());
-
-            ShowHomeCommand = new RelayCommand(() => _mainWindowLauncher.Launch());
+            _settingsViewLauncher = settingsViewLauncher;
 
             DeleteCommand = new RelayCommand(Delete);
+
+            HideCommand = new RelayCommand(() => PinnedImageDisplayHost?.Close());
+
+            ConfigureCommand = new RelayCommand(() => _settingsViewLauncher.Launch(new PinnedImageSettingsViewLauncherParameter(Image, _pinnedImageAppService)));
+
+            ShowHomeCommand = new RelayCommand(() => _mainWindowLauncher.Launch());
         }
 
         private void Delete()

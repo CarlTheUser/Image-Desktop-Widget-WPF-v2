@@ -4,11 +4,161 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation"
+        xmlns:converters="clr-namespace:Desk.Aesthetics.PinnedImages.Presentation.Converters"
         mc:Ignorable="d"
         d:Height="400"
         d:Width="400"
-        Title="PinnedImageSettingsWindow" Height="450" Width="800">
+        Width="300"
+        Height="300"
+        MinWidth="300"
+        MinHeight="170"
+        MaxWidth="300"
+        Title="PinnedImageSettingsWindow"
+        Closed="Window_Closed">
+    <Window.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Text="Rotation"/>
+        <Slider
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Value="{Binding Image.RotationAngle, Mode=TwoWay}"
+                        Interval="1"
+                        Minimum="0"
+                        Maximum="360"
+                        Margin="5"
+                        MinWidth="120"
+            />
+
+        <TextBlock
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Text="Frame Thickness"/>
+
+        <Slider
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Value="{Binding Image.FrameThickness, Mode=TwoWay}"
+                        Interval="1"
+                        Minimum="0"
+                        Maximum="20"
+                        Margin="5"
+                        MinWidth="120"
+            />
+
+        <TextBlock 
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Text="Enable caption"/>
+        <CheckBox
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        IsChecked="{Binding Image.Caption.Visible}"
+                        Style="{StaticResource ToggleCheckBox}"
+                        Margin="0 0 10 0"
+                        HorizontalAlignment="Right"/>
+
+        <TextBlock 
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Text="Shadows"/>
+        <CheckBox
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        IsChecked="{Binding Image.Shadow.Enabled}"
+                        Style="{StaticResource ToggleCheckBox}"
+                        Margin="0 5 10 0"
+                        HorizontalAlignment="Right"/>
+        <Grid Grid.Row="4"
+                          Grid.ColumnSpan="2"
+                          Visibility="{Binding Image.Shadow.Visible, Converter={StaticResource BoolToVisibility}}"
+                          Margin="20 0 0 0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            Text="Opacity"/>
+            <Slider
+                            Grid.Column="1"
+                            Grid.Row="0"
+                            Value="{Binding Image.Shadow.Opacity}"
+                            Minimum="0"
+                            Maximum="1"
+                            Margin="5"
+                            MinWidth="120"/>
+
+            <TextBlock
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Text="Depth"/>
+            <Slider
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            Value="{Binding Image.Shadow.Depth}"
+                            Interval="1"
+                            Minimum="0"
+                            Maximum="20"
+                            Margin="5"
+                            MinWidth="120"/>
+
+            <TextBlock
+                            Grid.Column="0"
+                            Grid.Row="2"
+                            Text="Direction"/>
+            <Slider
+                            Grid.Column="1"
+                            Grid.Row="2"
+                            Value="{Binding Image.Shadow.Direction}"
+                            Interval="1"
+                            Minimum="0"
+                            Maximum="360"
+                            Margin="5"
+                            MinWidth="120"/>
+
+            <TextBlock
+                            Grid.Column="0"
+                            Grid.Row="3"
+                            Text="Blur Radius"/>
+            <Slider
+                            Grid.Column="1"
+                            Grid.Row="3"
+                            Value="{Binding Image.Shadow.BlurRadius}"
+                            Interval="1"
+                            Minimum="0"
+                            Maximum="20"
+                            Margin="5"
+                            MinWidth="120"/>
+
+        </Grid>
+
+
     </Grid>
 </Window>

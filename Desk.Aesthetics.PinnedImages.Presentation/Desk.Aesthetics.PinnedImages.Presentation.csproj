@@ -99,6 +99,7 @@
     <Compile Include="PinnedImageSettingsWindow.xaml.cs">
       <DependentUpon>PinnedImageSettingsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PinnedImageSettingsWindowViewLauncher.cs" />
     <Compile Include="PinnedImageWindow.xaml.cs">
       <DependentUpon>PinnedImageWindow.xaml</DependentUpon>
     </Compile>
@@ -156,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="StylesDictionaries\Images.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StylesDictionaries\Sliders.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,4 +1,5 @@
-﻿using Desk.Aesthetics.PinnedImages.Presentation.Models;
+﻿using Desk.Aesthetics.PinnedImages.Presentation.Application;
+using Desk.Aesthetics.PinnedImages.Presentation.Models;
 using Desk.Aesthetics.PinnedImages.Presentation.ViewModels;
 
 namespace Desk.Aesthetics.PinnedImages.Presentation
@@ -30,8 +31,8 @@ namespace Desk.Aesthetics.PinnedImages.Presentation
                 new PinnedImageViewModel(
                     parameter.Image,
                     _pinnedImageAppServiceFactory.Create(),
-                    parameter.MainWindowViewLauncher)).Show();
+                    parameter.MainWindowViewLauncher,
+                    new PinnedImageSettingsViewLauncher())).Show();
         }
     }
-
 }
